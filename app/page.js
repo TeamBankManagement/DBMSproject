@@ -6,6 +6,7 @@ export default function Home() {
     <>
       <div className="h-screen flex justify-center items-center bg-gray-900">
      <MobileNav/>
+     <h1></h1>
     </div>
     </>
   )
