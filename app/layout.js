@@ -12,7 +12,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className=''>
+    <html lang="en" className='dark'>
 
       <body className={inter.className}>
         <ClientOnly>
