@@ -46,14 +46,16 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
-      fontFamily: {
-        sans: ["Poppins", ...defaultTheme.fontFamily.sans],
-        inter: ["Inter", ...defaultTheme.fontFamily.sans],
-      },
       boxShadow: {
         myShadow1: "4.1px -5px 0 0 rgb(17,24,39)",
         myShadow2: "-4.1px -5px 0 0 rgb(17,24,39)",
       },
+      
+      fontFamily: {
+        sans: ["Poppins", ...defaultTheme.fontFamily.sans],
+        inter: ["Inter", ...defaultTheme.fontFamily.sans],
+      },
+     
       fontSize: {
         tiny: ["0.625rem", "0.8125rem"],
         "tiny+": ["0.6875rem", "0.875rem"],

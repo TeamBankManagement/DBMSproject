@@ -1,6 +1,9 @@
+import Header from '@/components/header/Header';
 import ClientOnly from './Clientonly';
+
 import './globals.css'
 import { Inter } from 'next/font/google';
+import Navbar from './Navbar/Navbar';
 const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: 'Create Next App',
@@ -10,12 +13,25 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className=''>
-      <body className={inter.className}> 
-      <ClientOnly>
-      {children}
-      </ClientOnly>
-      
-    </body>
+
+      <body className={inter.className}>
+        <ClientOnly>
+          <div className="is-header-blur">
+            <div
+              id="root"
+              className="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900"
+            >
+              <nav className="header before:bg-white dark:before:bg-navy-750 print:hidden">
+                <Navbar/>
+              </nav>
+              {children}
+
+            </div>
+          </div>
+
+        </ClientOnly>
+
+      </body>
     </html >
   )
 }
