@@ -1,6 +1,7 @@
 import Notificationsvg from "@/components/header/components/svg/Notification";
 import Link from "next/link";
 import React from "react";
+import Notificationmodal from "./modal/Notificationmodal";
 
 const Rightcontent = () => {
   const darkMode = false;
@@ -40,7 +41,7 @@ const Rightcontent = () => {
           </span>
         </button>
         {/* dekhanor jonno class show & & this is notification model*/}
-        {/* <Notificmodel/> */}
+        <Notificationmodal/>
         {/* Right Sidebar Toggle */}
         <div class="avatar h-8 w-8">
           <img
