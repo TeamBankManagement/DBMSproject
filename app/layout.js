@@ -1,9 +1,13 @@
-import Header from '@/components/header/Header';
+
 import ClientOnly from './Clientonly';
 
 import './globals.css'
 import { Inter } from 'next/font/google';
 import Navbar from './Navbar/Navbar';
+import Searchhistory from './Navbar/components/modal/Searchhistory';
+import AppContextProvider from '@/context/AppContext';
+import { AuthProvider } from './Providers';
+import Sidebar from './Navbar/sidebar/Sidebar';
 const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: 'Create Next App',
@@ -12,23 +16,26 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className='dark etc'>
-
+    <html lang="en" className=''>
       <body className={inter.className}>
         <ClientOnly>
-          <div className="is-header-blur">
+          <AppContextProvider>
+            <AuthProvider>
+          <div className="is-header-blur " id='mydiv'>
             <div
               id="root"
               className="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900"
             >
+              <Sidebar/>
               <nav className="header before:bg-white dark:before:bg-navy-750 print:hidden">
                 <Navbar/>
               </nav>
+              <Searchhistory/>
               {children}
-
             </div>
           </div>
-
+          </AuthProvider>
+          </AppContextProvider>
         </ClientOnly>
 
       </body>

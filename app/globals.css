@@ -103,7 +103,7 @@
   }
   
   .sidebar-panel {
-    @apply fixed top-0 left-0 z-30 h-full w-[calc(var(--main-sidebar-width)+var(--sidebar-panel-width))] -translate-x-full transform-gpu shadow-soft transition-transform delay-150 duration-[.25s] ease-in dark:shadow-navy-900/60 md:delay-[unset];
+    @apply fixed top-0 left-0 z-30 h-full w-[var(--sidebar-panel-width)] -translate-x-full transform-gpu shadow-soft transition-transform delay-150 duration-[.25s] ease-in dark:shadow-navy-900/60 md:delay-[unset];
   }
   
   .is-sidebar-open .sidebar-panel {
@@ -139,7 +139,7 @@
   }
   
   .is-sidebar-open nav.header {
-    @apply xl:w-[calc(100%-(var(--main-sidebar-width)+var(--sidebar-panel-width)))];
+    @apply xl:w-[calc(100%-var(--sidebar-panel-width))];
   }
   
   .is-header-blur nav.header .header-container {
@@ -167,7 +167,7 @@
   }
   
   .is-sidebar-open .main-content {
-    @apply ease-out xl:ml-[calc(var(--main-sidebar-width)+var(--sidebar-panel-width))];
+    @apply ease-out xl:ml-[calc(var(--sidebar-panel-width))];
   }
   
   /* Sideblock styles */
@@ -633,5 +633,49 @@
   @apply cursor-pointer
 }
 
+.steps {
+  @apply flex items-baseline [--size:2rem] [--line:0.25rem];
+}
+
+.steps.line-space {
+  --space: 0.5rem;
+}
+
+.steps .step {
+  @apply flex flex-1 flex-col break-words text-center font-inter tracking-wide;
+}
+
+.steps .step .step-header {
+  @apply relative m-auto mb-2 flex h-[var(--size)] w-[var(--size)] shrink-0 items-center justify-center;
+}
+
+.steps .step:not(:last-child)::before {
+  @apply relative left-[50%] top-[calc(var(--size)/2+var(--line)/2)] order-[-1] h-[var(--line)] rounded-full content-[''];
+}
+
+.steps.line-space .step:not(:last-child)::before {
+  width: calc(100% - var(--size) - calc(var(--space) * 2));
+  left: calc(50% + calc(var(--size) / 2 + var(--space)));
+}
+
+.steps.is-vertical {
+  @apply flex-col;
+}
+
+.steps.is-vertical .step {
+  @apply relative flex-row;
+}
+
+.steps.is-vertical .step .step-header {
+  @apply z-1 m-0;
+}
+
+.steps.is-vertical .step:not(:last-child)::before {
+  @apply absolute inset-0 h-auto w-[var(--line)] translate-x-[calc((var(--size)/2)-(var(--line)/2))];
+}
+
+.steps.is-vertical.line-space .step:not(:last-child)::before {
+  @apply top-[calc(var(--size)+var(--space))] bottom-[var(--space)];
+}
 
 

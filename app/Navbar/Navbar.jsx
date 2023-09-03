@@ -1,22 +1,46 @@
-import React from "react";
+"use client";
+import React, { useContext } from "react";
 import Desktopsearchbar from "./components/Desktopsearchbar";
 import Rightcontent from "./components/Rightcontent";
+import { AppContext } from "@/context/AppContext";
+// import Mainsearch from "./components/modal/Mainsearch";
 
 const Navbar = () => {
+  const { open, setOpen } = useContext(AppContext);
+  
+  const handleClick = () => {
+    const myDiv = document.querySelector('#mydiv');
+    if (open) {
+      myDiv.classList.remove('is-sidebar-open');
+    } else {
+      myDiv.classList.add('is-sidebar-open');
+    }
+    setOpen(!open);
+  };
+
   return (
     <>
       <div className="header-container relative flex w-full bg-black dark:bg-navy-700 print:hidden">
         {/* Header Items */}
         <div className="flex w-full items-center justify-between">
           {/* Left: Sidebar Toggle Button */}
-          <div className="h-7 w-7">
-            <button className="menu-toggle ml-0.5 flex h-7 w-7 flex-col justify-center space-y-1.5 text-primary outline-none focus:outline-none dark:text-accent-light/80">
+          <div className="h-7 w-7 ">
+            {/* for three bar to arrow add active */}
+            <button
+              className={`menu-toggle ml-0.5 flex h-7 w-7 flex-col justify-center space-y-1.5 text-primary outline-none focus:outline-none dark:text-accent-light/80 ${open ? 'active' : '' }`}
+              onClick={handleClick}
+            >
+            
               <span />
               <span />
               <span />
             </button>
           </div>
 
+          <div className="hidden sm:block">
+            <Desktopsearchbar />
+            {/* <Mainsearch/> */}
+          </div>
           {/* Right header button */}
           <div className="-mr-1.5 flex items-center space-x-2">
             {/* Mobile Search bar */}
@@ -37,11 +61,8 @@ const Navbar = () => {
               </svg>
             </button>
             {/* Main Searchbar */}
-            <div className="hidden sm:block">
-              <Desktopsearchbar />
-            </div>
-              <Rightcontent/>
-           
+
+            <Rightcontent />
           </div>
         </div>
       </div>

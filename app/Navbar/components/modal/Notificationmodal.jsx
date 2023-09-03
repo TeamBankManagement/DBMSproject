@@ -1,13 +1,19 @@
-import React from 'react'
+'use client'
+import React, { useContext } from 'react'
+import Tab from './Tab'
+import { AppContext } from '@/context/AppContext';
 
 const Notificationmodal = () => {
+    const activeTab="tabAll";
+// const {isNotific}=useContext(AppContext)
+  const isNotific=false;
   return (
     <>
 
     {/* add show */}
-      <div className="popper-root right-10 top-14" x-ref="popperRoot">
+      <div className={`popper-root right-0 top-14 ${isNotific?'show':''}`} x-ref="popperRoot">
         <div
-          className={`popper-box mx-4 mt-1 flex max-h-[calc(100vh-6rem)] w-[calc(100vw-2rem)] flex-col rounded-lg border border-slate-150 bg-white shadow-soft dark:border-navy-800 dark:bg-navy-700 dark:shadow-soft-dark sm:m-0 sm:w-80`}
+          className={`popper-box mx-4 mt-1 flex max-h-[calc(100vh-6rem)] flex-col rounded-lg border border-slate-150 bg-white shadow-soft dark:border-navy-800 dark:bg-navy-700 dark:shadow-soft-dark sm:m-0 sm:w-80`}
         >
          <div className="rounded-t-lg bg-slate-100 text-slate-600 dark:bg-navy-800 dark:text-navy-200">
   <div className="flex items-center justify-between px-4 pt-2">
@@ -55,7 +61,7 @@ const Notificationmodal = () => {
             ? "border-primary dark:border-accent text-primary dark:text-accent-light"
             : "border-transparent hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100"
         }`}
-        onClick={() => handleTabClick(item.tab)}
+        // onClick={() => handleTabClick(item.tab)}
       >
         <span>{item.label}</span>
       </button>

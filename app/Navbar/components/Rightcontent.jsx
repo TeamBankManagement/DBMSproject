@@ -1,9 +1,30 @@
+"use client";
 import Notificationsvg from "@/components/header/components/svg/Notification";
 import Link from "next/link";
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Notificationmodal from "./modal/Notificationmodal";
+import { AppContext } from "@/context/AppContext";
+import { redirect } from "next/navigation";
+import { useSession, signIn, signOut } from "next-auth/react";
 
-const Rightcontent = () => {
+export default function Rightcontent() {
+  const [image, setImage] = useState("");
+  const { data: session, status } = useSession();
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      redirect("/login");
+    } 
+    if (status === "authenticated") {
+      setImage(session.user.image);
+      console.log(session.user.image);
+
+    }
+    console.log(image);
+  }, []);
+
+
+  const { isNotific, setNotific } = useContext(AppContext);
+
   const darkMode = false;
   return (
     <>
@@ -32,27 +53,24 @@ const Rightcontent = () => {
         )}
       </button>
 
-      
-        <button className="flex items-center justify-center relative h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 hover:animate-bounce">
-          <Notificationsvg />
-          <span className="absolute -right-px -top-px flex h-3 w-3 items-center justify-center">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-80" />
-            <span className="inline-flex h-2 w-2 rounded-full bg-primary" />
-          </span>
-        </button>
-        {/* dekhanor jonno class show & & this is notification model*/}
-        <Notificationmodal/>
-        {/* Right Sidebar Toggle */}
-        <div class="avatar h-8 w-8">
-          <img
-            class="rounded-full"
-            src="https://media.licdn.com/dms/image/C4D03AQH-Y4vqxUEc4A/profile-displayphoto-shrink_400_400/0/1657437035895?e=1698883200&v=beta&t=wyBVA2ajVXSCBmxAMvtFU7Afdy7Sahf5lJrZw32ayKU"
-            alt="avatar"
-          />
-        </div>
-    
+      <button
+        className="flex items-center justify-center relative h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 hover:animate-shake"
+        onClick={(event) => {
+          setNotific(!isNotific);
+        }}
+      >
+        <Notificationsvg />
+        <span className="absolute -right-px -top-px flex h-3 w-3 items-center justify-center">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-80" />
+          <span className="inline-flex h-2 w-2 rounded-full bg-primary" />
+        </span>
+      </button>
+      {/* dekhanor jonno class show & & this is notification model*/}
+      <Notificationmodal />
+      {/* Right Sidebar Toggle */}
+      <div class="avatar h-8 w-8">
+        <img class="rounded-full" src={image} alt="avatar" />
+      </div>
     </>
   );
-};
-
-export default Rightcontent;
+}

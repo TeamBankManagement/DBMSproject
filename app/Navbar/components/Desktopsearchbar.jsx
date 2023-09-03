@@ -1,14 +1,25 @@
-import React from 'react'
+'use client'
+import { AppContext } from '@/context/AppContext'
+import React , {useContext} from 'react'
 
 const Desktopsearchbar = () => {
+const {setIsFocused}=useContext(AppContext);
   return (
    <>
    <div className="relative mr-4 h-8 flex ">
                 <input
                   placeholder="Search here..."
-                  className="form-input peer h-full rounded-full bg-slate-150 px-4 pl-9 text-xs+ text-slate-800 ring-primary/50 hover:bg-slate-200 focus:ring dark:bg-navy-900/90 dark:text-navy-100 dark:placeholder-navy-300 dark:ring-accent/50 dark:hover:bg-navy-900 dark:focus:bg-navy-900 focus:w-80"
-                />
-                {/* :class="isShowPopper ? 'w-80' : 'w-60'" @focus="isShowPopper= true" type="text" x-ref="popperRef"  */}
+                  className="form-input peer h-full rounded-full w-80 bg-slate-150 px-4 pl-9 text-xs+ text-slate-800 ring-primary/50 hover:bg-slate-200 focus:ring dark:bg-navy-900/90 dark:text-navy-100 dark:placeholder-navy-300 dark:ring-accent/50 dark:hover:bg-navy-900 dark:focus:bg-navy-900 focus:w-96"
+                  type="text"
+    id="nameInput"    
+    onFocus={(event) => {
+      setIsFocused(true);
+    }}
+    onBlur={(event) => {
+      setIsFocused(false);
+    }}
+              />
+            
                 <div className="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
