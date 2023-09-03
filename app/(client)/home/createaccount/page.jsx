@@ -1,7 +1,7 @@
 'use client'
 import React,{useState , useEffect} from "react";
 
-const page = () => {
+const Page = () => {
     const [isAtTop, setIsAtTop] = useState(true);
 
     useEffect(() => {
@@ -369,4 +369,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
