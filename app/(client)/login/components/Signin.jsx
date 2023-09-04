@@ -43,22 +43,24 @@ const Signin = () => {
       console.log(error);
     }
   };
-const handleGoogleSubmit = async(e)=>{
-  e.preventDefault();
-try {
-  const resp= await signIn("google",{
-    redirect: false
-  })
-  if (resp.error) {
-    // setError("Invalid Credentials");
-    return;
-  }
-  router.replace("/");
-} catch (error) {
-  console.log(error);
-}
-
-}
+// const handleGoogleSubmit = async(e)=>{
+//   // e.preventDefault();
+// try {
+//   const resp= await signIn("google",{
+//     redirect: false
+//   })
+//   if (resp.error) {
+//     // setError("Invalid Credentials");
+//     console.log("invalid login");
+//     return;
+//   }  
+//   console.log("login success");
+//   router.replace("/");
+// } catch (error) {
+//   console.log(error);
+//   // router.replace("/");
+// }
+// }
   return (
     <>
       <form action="#" className="sign-in-form" onSubmit={handleSubmit}>
@@ -86,7 +88,7 @@ try {
         <input type="submit" value="Login" className="btns solid" />
         <p className="social-text">Or Sign in with social platforms</p>
         <div className="social-media">
-          <button  className="social-icon" onClick={handleGoogleSubmit}>
+          <button  className="social-icon" onClick={()=>signIn("google")}>
           <FaGoogle />
             
           </button>
