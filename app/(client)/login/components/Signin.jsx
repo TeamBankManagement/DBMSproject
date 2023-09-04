@@ -46,7 +46,9 @@ const Signin = () => {
 const handleGoogleSubmit = async(e)=>{
   e.preventDefault();
 try {
-  const resp= await signIn("google")
+  const resp= await signIn("google",{
+    redirect: false
+  })
   if (resp.error) {
     // setError("Invalid Credentials");
     return;
