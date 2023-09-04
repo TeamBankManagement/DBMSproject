@@ -1,6 +1,5 @@
-"use client";
 'use client'
-import React, { useContext } from "react";
+import React, { useContext,useEffect } from "react";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import "./logins.css";
@@ -10,9 +9,13 @@ import { useSession, signIn, signOut } from "next-auth/react"
 export default function Page () {
   const { data: session ,status} = useSession();
   const { isSignup, setSignup } = useContext(AppContext);
-  if (status === "authenticated") {
-    redirect("/home");
-  }
+ 
+  useEffect(() => {
+    if (status === "authenticated") {
+      redirect("/home");
+    }
+  }, [])
+  
   return (
     <>
       {/* component */}      

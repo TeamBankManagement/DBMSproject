@@ -1,12 +1,14 @@
-"use client";
-import React, { useContext } from "react";
+'use client'
+import React, { useContext, useState,useEffect} from "react";
 import Desktopsearchbar from "./components/Desktopsearchbar";
 import Rightcontent from "./components/Rightcontent";
 import { AppContext } from "@/context/AppContext";
-// import Mainsearch from "./components/modal/Mainsearch";
+
+
 
 const Navbar = () => {
-  const { open, setOpen } = useContext(AppContext);
+  const { open, setOpen} = useContext(AppContext);
+
   
   const handleClick = () => {
     const myDiv = document.querySelector('#mydiv');

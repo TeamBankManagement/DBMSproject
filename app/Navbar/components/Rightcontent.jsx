@@ -4,23 +4,12 @@ import Link from "next/link";
 import React, { useContext, useState, useEffect } from "react";
 import Notificationmodal from "./modal/Notificationmodal";
 import { AppContext } from "@/context/AppContext";
-import { redirect } from "next/navigation";
-import { useSession, signIn, signOut } from "next-auth/react";
+
+
 
 export default function Rightcontent() {
-  const [image, setImage] = useState("");
-  const { data: session, status } = useSession();
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      redirect("/login");
-    } 
-    if (status === "authenticated") {
-      setImage(session.user.image);
-      console.log(session.user.image);
 
-    }
-    console.log(image);
-  }, []);
+  const {image} = useContext(AppContext);
 
 
   const { isNotific, setNotific } = useContext(AppContext);

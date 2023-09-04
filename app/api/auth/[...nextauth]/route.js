@@ -13,13 +13,12 @@ export const authOptions = {
 
       async authorize(credentials) {
         const { email, pass } = credentials;
-        console.log(email);
+        
             try {
           await connect();
           
           const user = await User.findOne({email})
-           console.log(user);
-          if (!user) {
+              if (!user) {
             return null;
           }            
          
@@ -28,8 +27,7 @@ export const authOptions = {
           
             return null;
           }
-          console.log("login succesfull");
-          return user;
+           return user;
         } catch (error) {
           console.log("Error: ", error);
         }

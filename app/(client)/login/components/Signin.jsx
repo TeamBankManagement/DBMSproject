@@ -25,7 +25,7 @@ const Signin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, pass} = formData;
- console.log(pass);
+
     try {
       const res = await signIn("credentials", {
         email,
@@ -38,7 +38,7 @@ const Signin = () => {
         return;
       }
 
-      router.replace("dashboard");
+      router.replace("/");
     } catch (error) {
       console.log(error);
     }

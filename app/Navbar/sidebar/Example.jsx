@@ -101,7 +101,7 @@ const Example = () => {
               </button>
             </div>
           </div>
-          <div x-show="expanded" x-collaps >
+          <div  >
             <ul className="space-y-1.5 px-2 pt-1 font-inter text-xs+ font-medium">
               <li>
                 <Link className="group flex justify-between space-x-2 rounded-lg p-2 tracking-wide text-slate-800 outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600" href="#">

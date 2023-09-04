@@ -15,11 +15,11 @@ export default function AppContextProvider({ children }) {
   const [isNotific,setNotific] = useState(false);
    const [isSignup,setSignup]=useState(false);
    const [open,setOpen]=useState(false);
-
+   const [image, setImage] = useState("https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=626&ext=jpg");
 
   //data filling pending
   const value = {
-    darkMode, setDarkMode,isFocused, setIsFocused,isNotific,setNotific,isSignup,setSignup,open,setOpen
+    darkMode, setDarkMode,isFocused, setIsFocused,isNotific,setNotific,isSignup,setSignup,open,setOpen,image, setImage
   };
 
   //step2
