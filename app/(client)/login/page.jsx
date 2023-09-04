@@ -5,7 +5,7 @@ import Signup from "./components/Signup";
 import "./logins.css";
 import { AppContext } from "@/context/AppContext";
 import { redirect } from "next/navigation";
-import { useSession, signIn, signOut } from "next-auth/react"
+import { useSession} from "next-auth/react"
 export default function Page () {
   const { data: session ,status} = useSession();
   const { isSignup, setSignup } = useContext(AppContext);

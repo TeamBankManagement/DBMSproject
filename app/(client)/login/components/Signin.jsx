@@ -43,7 +43,20 @@ const Signin = () => {
       console.log(error);
     }
   };
+const handleGoogleSubmit = async(e)=>{
+  e.preventDefault();
+try {
+  const resp= await signIn("google")
+  if (res.error) {
+    // setError("Invalid Credentials");
+    return;
+  }
+  router.replace("/");
+} catch (error) {
+  console.log(error);
+}
 
+}
   return (
     <>
       <form action="#" className="sign-in-form" onSubmit={handleSubmit}>
@@ -71,12 +84,13 @@ const Signin = () => {
         <input type="submit" value="Login" className="btns solid" />
         <p className="social-text">Or Sign in with social platforms</p>
         <div className="social-media">
-          <button  className="social-icon" onClick={() => signIn("google")}>
-            <FaMicrosoft />
+          <button  className="social-icon" onClick={handleGoogleSubmit}>
+          <FaGoogle />
+            
           </button>
 
           <a href="#" className="social-icon">
-            <FaGoogle />
+          <FaMicrosoft />
           </a>
         </div>
       </form>
