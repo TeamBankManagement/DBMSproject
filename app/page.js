@@ -9,6 +9,7 @@ export default function Home() {
  const {setImage}=useContext(AppContext);
   if (status === "authenticated") {
     setImage(session.user.image);
+    localStorage.setItem('image', session.user.image);
     return (
       <>
         <div className="main-content w-full px-[var(--margin-x)] pb-8 overflow-hidden">

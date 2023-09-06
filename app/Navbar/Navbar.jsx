@@ -10,13 +10,7 @@ const Navbar = () => {
   const { open, setOpen} = useContext(AppContext);
 
   
-  const handleClick = () => {
-    const myDiv = document.querySelector('#mydiv');
-    if (open) {
-      myDiv.classList.remove('is-sidebar-open');
-    } else {
-      myDiv.classList.add('is-sidebar-open');
-    }
+  const handleClick = () => {   
     setOpen(!open);
   };
 

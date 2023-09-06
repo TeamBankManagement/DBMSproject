@@ -1,16 +1,13 @@
-'use client'
-import React, { useEffect } from 'react';
-
-
+"use client";
+import React, { useEffect } from "react";
 
 const page = () => {
-  
   return (
     <>
       <div className="main-content w-full px-[var(--margin-x)] pb-8">
-  <div className="mt-4 grid grid-cols-12 gap-4 sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6">
-    <div className="col-span-12 grid grid-cols-12 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 py-5 sm:py-6">
-      {/* <div className="col-span-12 sm:col-span-6 lg:col-span-4">
+        <div className="mt-4 grid grid-cols-12 gap-4 sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6">
+          <div className="col-span-12 grid grid-cols-12 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 py-5 sm:py-6">
+            {/* <div className="col-span-12 sm:col-span-6 lg:col-span-4">
         <div className="px-4 text-white sm:px-5">
           <div className="-mt-1 flex items-center space-x-2">
             <h2 className="text-base font-medium tracking-wide">Balance</h2>
@@ -130,14 +127,37 @@ const page = () => {
           </div>
        
       </div> */}
-    </div>
-   
+          </div>
+        </div>
+        {/* second */}
+        <div className="mt-4 sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6">
+          <div className=" rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 py-5 sm:py-6">
+
+          <div className="  mt-5  sm:mt-0 ">       
+               <div className="scrollbar-sm flex space-x-4 overflow-x-auto px-4 pb-4 sm:px-5 ">
+               <div className="bg-black w-96 h-48 m-4"></div>
+        <div className="bg-black w-96 h-48 m-4"></div>
+        <div className="bg-black w-96 h-48 m-4"></div>
+        <div className="bg-black w-96 h-48 m-4"></div>
+        <div className="bg-black w-96 h-48 m-4"></div>
+        <div className="bg-black w-96 h-48 m-4"></div>
+        <div className="bg-black w-96 h-48 m-4"></div>
+        <div className="bg-black w-96 h-48 m-4"></div>
+        <div className="bg-black w-96 h-48 m-4"></div>
+        <div className="bg-black w-96 h-48 m-4"></div>
+        <div className="bg-black w-96 h-48 m-4"></div>
+        <div className="bg-black w-96 h-48 m-4"></div>
+        <div className="bg-black w-96 h-48 m-4"></div>
+        <div className="bg-black w-96 h-48 m-4"></div>
+                </div>
+                </div>
+        
+
+          </div>
         </div>
       </div>
-    
-  
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;
