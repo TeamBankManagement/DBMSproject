@@ -1,8 +1,5 @@
 'use client'
 import { createContext, useState, useEffect, useRef } from "react";
-
-
-
 //step1
 export const AppContext = createContext();
 
@@ -16,9 +13,38 @@ export default function AppContextProvider({ children }) {
    const [isSignup,setSignup]=useState(false);
    const [open,setOpen]=useState(false);
    const [image, setImage] = useState("");
-
+   
+  //  const [id, setId] = useState("");
+   const [accdata, setAccData] = useState({
+    _id:'',
+    name: '',
+    phone:'',
+    acctype:'',
+    address: {
+      street: '', 
+      state:'',  
+      country:'',
+      district: '',  
+      pin: '', 
+    },
+    aadhar: '',
+    pan: '',
+    doc: {
+      documentName: '',
+      documentURL: '',
+    },
+  });
+  const[allUser,setAllUser]=useState([]);
+  const[allOrder,setAllOrder]=useState([]);
+  const [step,setStep]=useState(1);
+  
    useEffect(() => {
+    
     const storedImage = localStorage.getItem('image');
+    // const AccountData=localStorage.getItem('cacheData');
+    // if(AccountData){
+    //   setAccData(JSON.parse(AccountData));
+    // }
     if (storedImage) {
       // Data is available in localStorage
       setImage(storedImage);
@@ -27,7 +53,7 @@ export default function AppContextProvider({ children }) {
       setImage('https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=626&ext=jpg');
     }
   }, []);
-
+ 
 useEffect(() => {
   const myDiv = document.querySelector('#mydiv');
     if (!open) {
@@ -37,9 +63,30 @@ useEffect(() => {
     }
 }, [open])
 
+
+const [formData, setFormData] = useState({
+  username:'',
+  email: '',
+  pass: '',
+  type:'customer',
+});
+
+const handleInputChange = (e) => {
+  const { name, value } = e.target;
+  setFormData({
+    ...formData,
+    [name]: value,
+  });
+
+};
+
+
+
+
+
   //data filling pending
   const value = {
-    darkMode, setDarkMode,isFocused, setIsFocused,isNotific,setNotific,isSignup,setSignup,open,setOpen,image, setImage
+    darkMode, setDarkMode,isFocused, setIsFocused,isNotific,setNotific,isSignup,setSignup,open,setOpen,image, setImage,formData, setFormData,handleInputChange,accdata, setAccData,step,setStep,
   };
 
   //step2

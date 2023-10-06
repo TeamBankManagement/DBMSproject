@@ -6,8 +6,9 @@ import { AppContext } from "@/context/AppContext";
 
 export default function Home() {
   const { data: session ,status} = useSession();
- const {setImage}=useContext(AppContext);
+ const {setImage,setId }=useContext(AppContext);
   if (status === "authenticated") {
+  
     setImage(session.user.image);
     localStorage.setItem('image', session.user.image);
     return (
@@ -22,7 +23,7 @@ export default function Home() {
 
   if (status === "unauthenticated") {
 
-    redirect("/login");
+    redirect("/signin");
   }
 
 

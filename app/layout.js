@@ -8,6 +8,9 @@ import Searchhistory from './Navbar/components/modal/Searchhistory';
 import AppContextProvider from '@/context/AppContext';
 import { AuthProvider } from './Providers';
 import Sidebar from './Navbar/sidebar/Sidebar';
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+import ReduxStoreProvider from '@/store/provider';
 const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: 'Create Next App',
@@ -19,8 +22,9 @@ export default function RootLayout({ children }) {
     <html lang="en" className=''>
       <body className={inter.className}>
         <ClientOnly>
-          <AppContextProvider>
-            <AuthProvider>
+        <AuthProvider>
+          <ReduxStoreProvider>
+          <AppContextProvider>         
           <div className="is-header-blur " id='mydiv'>
             <div
               id="root"
@@ -32,10 +36,13 @@ export default function RootLayout({ children }) {
               </nav>
               <Searchhistory/>
               {children}
+              <ToastContainer />
             </div>
           </div>
-          </AuthProvider>
+          
           </AppContextProvider>
+          </ReduxStoreProvider>
+          </AuthProvider>
         </ClientOnly>
 
       </body>

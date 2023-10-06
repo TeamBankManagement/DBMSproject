@@ -5,7 +5,6 @@ import React, { useContext, useState, useEffect } from "react";
 import Notificationmodal from "./modal/Notificationmodal";
 import { AppContext } from "@/context/AppContext";
 
-
 export default function Rightcontent() {
 
   const {image} = useContext(AppContext);

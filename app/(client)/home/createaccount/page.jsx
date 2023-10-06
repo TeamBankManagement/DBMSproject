@@ -58,13 +58,12 @@ const Page = () => {
           </ul>
         </div>
         <div className="sm:hidden">
-          {/* <div x-data="{isStuck:false}" className="pb-6" x-intersect:enter.full.margin.-60px.0.0.0="isStuck = false" x-intersect:leave.full.margin.-60px.0.0.0="isStuck = true"> */}
+        
 
           <div className="pb-6">
-    {/* //   <div :class="isStuck && 'fixed right-0 top-[60px] w-full z-10'"> */}
-          {/* <div className="pb-6 fixed right-0 top-[60px] w-full z-10"> */}
+    
             <div className={`pb-6 ${!isAtTop?'fixed right-0 top-[60px] w-full z-10':''}`}>
-              {/* <div className="transition-all duration-200" :class="isStuck && 'py-2.5 px-4 bg-white dark:bg-navy-700 shadow-lg relative'"> */}
+         
               <div className={`transition-all duration-200 ${!isAtTop?'py-2.5 px-4 bg-white dark:bg-navy-700 shadow-lg relative':''}`}>
                 <ol className="steps with-space-line">
                   <li className="step before:bg-primary dark:before:bg-accent">
@@ -339,6 +338,7 @@ const Page = () => {
                         clipRule="evenodd"
                       />
                     </svg>
+                    
                   </div>
                   <h3 className="ml-4 text-slate-700 dark:text-navy-100">
                     Select Service

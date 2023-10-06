@@ -35,7 +35,6 @@ export default async function mail(email,otp) {
         }
       });
     });
-
   try {
     await sendMailPromise();
     return NextResponse.json({ message: 'Email sent' });

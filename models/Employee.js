@@ -1,6 +1,8 @@
-import { Schema, model, models } from 'mongoose';
+import mongoose from "mongoose";
 
-const EmployeeSchema = new Schema({
+
+const EmployeeSchema = new mongoose.Schema({
+
     username: {
         type: String,
         required: [true, 'Username is required!'],
@@ -10,40 +12,35 @@ const EmployeeSchema = new Schema({
         unique: [true, 'Email already exists!'],
         required: [true, 'Email is required!'],
     },
-    password: {
+    pass: {
         type: String,
-        required: [true, 'Password is required!'],
+        required: [true, 'password is required!'],       
     },
-    phone: String,
-    account_type: {
+    phone : {
+        type : Number
+    },
+    accountType :{
         type: String,
-        enum: ['employee', 'manager'],
+        enum: ['Employee', 'Manager']
     },
-    department: {
+    departmentId : {
         type: String,
-        enum: ['loan_dept', 'Investment and wealth management', 'Card_Services', 'Account_create_dept', 'Cash_Transaction_Dept', 'Audit_dept', 'Customer_support'],
+        enum:['Loan Department','Investment & Wealth Management','Card Services','Account Creation Department','Cash Transaction Department','Audit Department','Customer Support']
     },
-    status: String,
-    session: [{
-        session_id: {
-            type: Number,
-            required: true,
-        },
-        online_Status: {
-            type: Boolean,
-            required: true,
-        },
-        time: [{
-            start: {
-                type: Date,
-                required: true,
-            },
-            end: {
-                type: Date,
-            },
-        }],
-    }],
+
+    status : {
+        type : Boolean,
+    },
+    
+    session : [{
+        session_id : Number,
+        online_status : Boolean,
+        start_time : Date,
+        end_time : Date
+
+    }]     
 });
 
-const Employee = models.Employee || model("Employee", EmployeeSchema);
+
+const Employee = mongoose.models.Employee || mongoose.model("Employee", EmployeeSchema);
 export default Employee;

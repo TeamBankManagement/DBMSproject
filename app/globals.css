@@ -677,5 +677,9 @@
 .steps.is-vertical.line-space .step:not(:last-child)::before {
   @apply top-[calc(var(--size)+var(--space))] bottom-[var(--space)];
 }
+.pagination {
+  @apply font-inter font-medium flex text-slate-600 dark:text-navy-100
+}
+
 
 
