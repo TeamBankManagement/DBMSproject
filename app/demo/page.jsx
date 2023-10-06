@@ -2,7 +2,7 @@
 import React ,{useEffect} from 'react'
 import { addUser } from '@/store/feature/newaccount-manage/accountManageSlice'
 import { useDispatch, useSelector } from 'react-redux'
-const page = () => {
+const Page = () => {
  const dispatch=useDispatch();
  const {accountData}=useSelector((state)=>state.accountManage);
  console.log(accountData);
@@ -19,4 +19,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

@@ -9,7 +9,7 @@ import { FaMicrosoft, FaGoogle } from 'react-icons/fa';
 import { signIn } from "next-auth/react";
 import { toast } from 'react-toastify';
 import Link from "next/link.js";
-const page = () => {
+const Page = () => {
   const bgImageStyle = {
     backgroundImage: 'url("")',
   };
@@ -184,4 +184,4 @@ return (
   );
 };
 
-export default page;
+export default Page;

@@ -10,7 +10,7 @@ import { signIn } from "next-auth/react";
 import { toast } from 'react-toastify';
 import Link from "next/link.js";
 import Tab from "../components/Tab.jsx";
-const page = () => {
+const Page = () => {
   
   const bgImageStyle = {
     backgroundImage: 'url("")',
@@ -168,4 +168,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
