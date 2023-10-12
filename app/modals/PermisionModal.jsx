@@ -46,7 +46,7 @@ const PermisionModal = () => {
                   </svg>
                   <span className="ml-5">
                     <span className="block font-medium text-gray-800 dark:text-gray-200">Account Activity</span>
-                    <span className="block text-sm text-gray-500">Get important notifications about you or activity you've missed</span>
+                    <span className="block text-sm text-gray-500">Get important notifications about you or activity you have missed</span>
                   </span>
                 </span>
                 <input type="checkbox" id="hs-account-activity" className="relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-none checked:bg-blue-600 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-blue-600 focus:ring-blue-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-blue-600 dark:focus:ring-offset-gray-800
