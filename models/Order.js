@@ -1,7 +1,11 @@
 import mongoose from "mongoose";
 
 const OrderSchema = new mongoose.Schema({
- 
+
+  userid:{
+    type:String,
+    required:[true,'Please Login first'],
+  }, 
   name: {
     type: String,
   },
@@ -34,6 +38,12 @@ const OrderSchema = new mongoose.Schema({
       documentURL: String,
     },
   ],
+  status : {
+    type : String,
+},
+  draft : {
+    type : Boolean,
+},
   
 });
 

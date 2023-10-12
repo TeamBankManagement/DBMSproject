@@ -1,10 +1,19 @@
 'use client'
 import { configureStore } from "@reduxjs/toolkit"
-import accountManageSlice from "./feature/newaccount-manage/accountManageSlice"
 
- export const store = configureStore({
+import userSlice  from "./feature/user/userSlice"
+import accountDetailsSlice from "./feature/Account/accountDetailsSlice"
+
+
+export const store = configureStore({
     reducer:{
-        accountManage:accountManageSlice,
-    //add reducer        
+        
+       userData:userSlice, 
+       accountData:accountDetailsSlice,
+        
+    //add more reducer        
     }
  })
+ export default store;
+
+

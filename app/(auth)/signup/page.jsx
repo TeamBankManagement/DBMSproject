@@ -1,25 +1,42 @@
 "use client";
 import Image from "next/image";
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import Input from "../components/Input.jsx";
 import { Emailsvg, Locksvg } from "../components/Svg.jsx";
 import { useRouter } from "next/navigation";
-import { AppContext } from "@/context/AppContext.js";
 import { FaMicrosoft, FaGoogle } from 'react-icons/fa';
 import { signIn } from "next-auth/react";
 import { toast } from 'react-toastify';
 import Link from "next/link.js";
+import { useDispatch, useSelector } from "react-redux";
+import { createUser } from "@/store/feature/user/userSlice.js";
 const Page = () => {
-  const bgImageStyle = {
-    backgroundImage: 'url("")',
+  // const bgImageStyle = {
+  //   backgroundImage: 'url("")',
+  // };/
+const router=useRouter();
+  const {users,loading}  = useSelector((state) => state.userData);
+
+console.log(loading,users);
+createUser
+  const [formData, setFormData] = useState({
+    username:'',
+    email: '',
+    pass: '',
+    cpass:'',
+    type:'customer',
+  });
+  const dispatch = useDispatch();
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  
   };
-  const { formData,handleInputChange } = useContext(AppContext);
-
-  const router = useRouter();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const {username,email, pass } = formData;
+  const handleSubmit = () => {
+  const {username,email, pass ,cpass} = formData;
   
     if (username==="" || email === "" || pass === "") {
       const errorMessage = "Please provide both email and password.";
@@ -29,53 +46,89 @@ const Page = () => {
       });
       return;
     }
-  
-    const loadingToastId = toast.loading('Signing up...', {
+    if(pass!=cpass){
+      const errorMessage = "password not matched";
+      toast.error(errorMessage, {
+        autoClose: 2000,
+        position: 'top-center',
+      });
+      return;
+    }
+ 
+    dispatch(createUser(formData));
+    if(loading){
+      toast.loading('Signing up...', {
       autoClose: false,
       closeOnClick: false,
       position: 'top-center',
     });
-      try {
-      const response = await fetch('/api/users/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({username, email, pass }), // Adjust property names to match your API's expectations
-      });
-  
-      const data = await response.json();
-          console.log(data);
-      toast.dismiss(loadingToastId);
-  
-      if (!response.ok) {
-       toast.error(data.message || 'Signup failed', {
-          autoClose: 3000,
-          position: 'top-center',
-        });
-        return;
-      }
-  
-      router.replace("/signin");
+    }
+     router.replace("/signin");
       toast.success('Signup successful', {
         autoClose: 3000,
         position: 'top-center',
       });
-    } catch (error) {
-      console.error('Error:', error);
-      toast.dismiss(loadingToastId);
-      toast.error('An error occurred', {
-        autoClose: 5000,
-        position: 'top-center',
-      });
-    }
   };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const {username,email, pass } = formData;
+  
+  //   if (username==="" || email === "" || pass === "") {
+  //     const errorMessage = "Please provide both email and password.";
+  //     toast.error(errorMessage, {
+  //       autoClose: 2000,
+  //       position: 'top-center',
+  //     });
+  //     return;
+  //   }
+  
+  //   const loadingToastId = toast.loading('Signing up...', {
+  //     autoClose: false,
+  //     closeOnClick: false,
+  //     position: 'top-center',
+  //   });
+  //     try {
+  //     const response = await fetch('/api/users/signup', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({username, email, pass }), // Adjust property names to match your API's expectations
+  //     });
+  
+  //     const data = await response.json();
+  //         console.log(data);
+  //     toast.dismiss(loadingToastId);
+  
+  //     if (!response.ok) {
+  //      toast.error(data.message || 'Signup failed', {
+  //         autoClose: 3000,
+  //         position: 'top-center',
+  //       });
+  //       return;
+  //     }
+  
+  //     router.replace("/signin");
+  //     toast.success('Signup successful', {
+  //       autoClose: 3000,
+  //       position: 'top-center',
+  //     });
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //     toast.dismiss(loadingToastId);
+  //     toast.error('An error occurred', {
+  //       autoClose: 5000,
+  //       position: 'top-center',
+  //     });
+  //   }
+  // };
   
 return (
     <>
       <div
         className="main-content w-full px-[var(--margin-x)] pb-8 overflow-hidden"
-        style={bgImageStyle}
+        // style={bgImageStyle}
       >
         <div className="grid w-full grow grid-cols-1 place-items-center">
           <div className="w-full max-w-[26rem] p-4 sm:px-5">
@@ -123,8 +176,8 @@ return (
                 title="Confirm password"
                 type="password"
                 placeholder="Enter Password"
-                name="pass"
-                value={formData.pass}
+                name="cpass"
+                value={formData.cpass}
                 onChange={handleInputChange}
               />
 

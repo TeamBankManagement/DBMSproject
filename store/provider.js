@@ -7,5 +7,6 @@ export default function ReduxStoreProvider({ children }) {
         <Provider store={store}>
             {children}
         </Provider>
+
     )
 }

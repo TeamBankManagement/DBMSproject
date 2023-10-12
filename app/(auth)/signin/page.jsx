@@ -53,7 +53,7 @@ const Page = () => {
           autoClose: 3000, position: 'top-center',});
         return;
       }
-      type=='customer'?router.replace("/"):router.replace("/admindashboard");
+      type=='customer'?router.replace("/choose"):router.replace("/manager");
       toast.success('Sign In Successful', {
         autoClose: 3000, position: 'top-center',});
     } catch (error) {

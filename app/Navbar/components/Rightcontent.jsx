@@ -1,9 +1,10 @@
 "use client";
-import Notificationsvg from "@/components/header/components/svg/Notification";
+
 import Link from "next/link";
 import React, { useContext, useState, useEffect } from "react";
 import Notificationmodal from "./modal/Notificationmodal";
 import { AppContext } from "@/context/AppContext";
+import Notificationsvg from "@/svg/Notification";
 
 export default function Rightcontent() {
 
@@ -40,7 +41,7 @@ export default function Rightcontent() {
         )}
       </button>
 
-      <button
+      {/* <button
         className="flex items-center justify-center relative h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 hover:animate-shake"
         onClick={(event) => {
           setNotific(!isNotific);
@@ -51,7 +52,7 @@ export default function Rightcontent() {
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-80" />
           <span className="inline-flex h-2 w-2 rounded-full bg-primary" />
         </span>
-      </button>
+      </button> */}
       {/* dekhanor jonno class show & & this is notification model*/}
       <Notificationmodal />
       {/* Right Sidebar Toggle */}

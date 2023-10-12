@@ -29,6 +29,7 @@ export default function AppContextProvider({ children }) {
     },
     aadhar: '',
     pan: '',
+    draft:'',
     doc: {
       documentName: '',
       documentURL: '',
@@ -63,7 +64,7 @@ useEffect(() => {
     }
 }, [open])
 
-
+//nor require
 const [formData, setFormData] = useState({
   username:'',
   email: '',

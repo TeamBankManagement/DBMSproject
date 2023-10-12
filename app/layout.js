@@ -19,7 +19,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className=''>
+    <html lang="en" className='dar'>
       <body className={inter.className}>
         <ClientOnly>
         <AuthProvider>

@@ -119,10 +119,10 @@ const Example = () => {
                 <li>
                   <Link
                     className="group flex justify-between space-x-2 rounded-lg p-2 tracking-wide text-slate-800 outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
-                    href="/signup"
+                    href="/customer"
                   >
                     <span className="text-slate-800 dark:text-navy-100">
-                      Signup
+                      Users
                     </span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -369,7 +369,7 @@ const Example = () => {
               </div>
             </div>
             <div className="flex justify-between p-4">
-              <Link href="/home/createaccount">
+              <Link href="/account">
                 <button className="btn h-11 w-full justify-between bg-gradient-to-r from-purple-500 to-indigo-600 text-white">
                   <span> Create Account </span>
                   <svg

@@ -103,6 +103,7 @@
 
 import { connect } from "@/dbConfig/dbConfig";
 import User from "@/models/User";
+
 import Employee from "@/models/Employee";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
@@ -179,7 +180,13 @@ export const authOptions = {
 
       return user;
     },
+    session: async ({ session})=> { 
+           
+      const user = await User.findOne({ email: session.user.email }) || await Employee.findOne({email:session.user.email});
+      session.user = user;
 
+      return session;
+    },
   },
 };
 

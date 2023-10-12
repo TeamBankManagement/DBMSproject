@@ -15,9 +15,9 @@ const UserSchema = new mongoose.Schema({
         unique: [true, 'Email already exists!'],
         required: [true, 'Email is required!'],
     },
-    accounts: {
-        type: [String],
-    },
+    accounts: [{
+        type:String,
+}],
     cif_id: {
         type: String,
     },
@@ -31,6 +31,10 @@ const UserSchema = new mongoose.Schema({
     verify:{
         type: Boolean,
     },
+    status:{
+        type: Boolean,
+    },
+
     
     // [
     //     {

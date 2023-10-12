@@ -53,3 +53,14 @@ export async function POST(request){
 
     }
 }
+export const GET = async (request) => {
+    try {
+      await connect();
+  
+      const users = await User.find({});
+      console.log(users);
+      return NextResponse.json(JSON.stringify(users), { status: 200 });
+    } catch (error) {
+      return NextResponse.json("Internal Server Error", { status: 500 });
+    }
+  };
