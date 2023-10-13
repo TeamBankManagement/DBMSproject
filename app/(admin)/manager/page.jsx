@@ -3,7 +3,7 @@ import OrderOver from '../components/OrderOver'
 import Balence from '../components/Balence'
 import Table from '../components/Table';
 import OrderTableBody from '../components/OrderTableBody';
-import PermisionModal from '../../modals/PermisionModal';
+
 const page = () => {
   
   return (

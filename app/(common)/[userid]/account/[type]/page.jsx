@@ -41,28 +41,28 @@ function MainContent(params) {
   const {accdata,setAccData,step,setStep}=useContext(AppContext);
   const {singleData , loading}=useSelector((state)=>state.accountData);
  const [temp,setTemp]=useState(false);
-  useEffect(() => {
+  // useEffect(() => {
    
-    const fetchData = async () => {
-      try {
-        console.log(params.params.type);
-        const params1 = {
-          type: params.params.type, // Replace with the first parameter
-          userid: params.params.userid  // Replace with the second parameter
-        };
-        await dispatch(showAccount(params1)).unwrap();
+  //   const fetchData = async () => {
+  //     try {
+  //       console.log(params.params.type);
+  //       const params1 = {
+  //         type: params.params.type, // Replace with the first parameter
+  //         userid: params.params.userid  // Replace with the second parameter
+  //       };
+  //       await dispatch(showAccount(params1)).unwrap();
        
       
-        setAccData(singleData); 
-        setTemp(true);
+  //       setAccData(singleData); 
+  //       setTemp(true);
        
-      } catch (error) {
-        console.error("Error fetching single order:", error);
-      }
-    };
+  //     } catch (error) {
+  //       console.error("Error fetching single order:", error);
+  //     }
+  //   };
 
-    fetchData();
-  }, [params.params.userid,params.params.type]);  
+  //   fetchData();
+  // }, [params.params.userid,params.params.type]);  
 
   // if(loading){
   //   return <p>Loading...</p>
@@ -93,90 +93,6 @@ function MainContent(params) {
   }, []);
   return (
     <main className="main-content w-full px-[var(--margin-x)] pb-8">
-      {/* Header */}
-      <div className="flex items-center space-x-4 py-5 lg:py-6">
-        <h2 className="text-xl font-medium text-slate-800 dark:text-navy-50 lg:text-2xl">
-        Create Account
-        </h2>
-        <div className="hidden h-full py-1 sm:flex">
-          <div className="h-full w-px bg-slate-300 dark:bg-navy-600" />
-        </div>
-        <ul className="hidden flex-wrap items-center space-x-2 sm:flex">
-          <li className="flex items-center space-x-2">
-            <a
-              className="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
-              href="#"
-            >
-              {params.params.type}
-            </a>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </li>
-          <li>account</li>
-        </ul>
-      </div>
-
-      {/* Steps */}
-      <div className="sm:hidden pb-6">
-        <div
-          className={`pb-6 ${
-            !isAtTop ? "fixed right-0 top-[60px] w-full z-10" : ""
-          }`}
-        >
-          <div
-            className={`transition-all duration-200 ${
-              !isAtTop
-                ? "py-2.5 px-4 bg-white dark:bg-navy-700 shadow-lg relative"
-                : ""
-            }`}
-          >
-            <ol className="steps with-space-line">
-              {[
-                "Enter Details",
-                "Choose Account type",
-                "Upload documents",
-                "Submit",
-              ].map((steps, index) => (
-                <Step key={index} number={index} title={steps} />
-              ))}
-            </ol>
-          </div>
-        </div>
-      </div>
-
-      {/* Form */}
-      <div className="grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
-        {/* Main form */}
-        <div className="col-span-12 sm:col-span-8">
-          <MainForm type={params.params.type} userid={params.params.userid} />
-        </div>
-        {/* Laptop step */}
-        <div className="hidden sm:col-span-4 sm:block">
-          <div className="sticky top-24 mt-3">
-            <ol className="steps is-vertical line-space">
-              {[
-                "Enter Details",
-                "Upload Documents",
-                "Review & Submit",
-                "Status",
-              ].map((step, index) => (
-                <Step key={index} number={index} title={step} />
-              ))}
-            </ol>
-          </div>
-        </div>
-      </div>
     </main>
   );
 }

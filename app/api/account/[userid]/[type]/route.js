@@ -126,7 +126,6 @@ export const PATCH = async (request, { params }) => {
       return new Response("Error Updating Prompt", { status: 500 });
   }
 };
-
 export const DELETE = async (request,{params}) => {
   try {
     await connect();
