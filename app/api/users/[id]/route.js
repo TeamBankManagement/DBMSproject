@@ -3,34 +3,34 @@ import User from "@/models/User";
 import {  NextResponse } from "next/server";
 
 
-export const GET = async (request, { params }) => {
-  
+export const GET = async (request, { params }) => {  
   try {
     await connect();    
     const user = await User.findById(params.id);
     if (!user) {
         return NextResponse.json("User Not Found", { status: 404 });
-      }
+}
     return NextResponse.json(JSON.stringify(user), { status: 200 });
   } catch (error) {
     return NextResponse.json("Internal Server Error", { status: 500 });
   }
 };
-
 export const PUT = async (request,{params}) => {
   console.log(params.id);
   try {
     await connect();
 
-    const {verify} = await request.json();
-    const user = await User.findByIdAndUpdate(params.id, {verify});
+    const {verify ,accounts} = await request.json();
+    console.log(accounts);
+    const user = await User.findByIdAndUpdate(params.id, {verify , accounts});
 
-    if (!user) {
+   if (!user) {
       return NextResponse.json("User Not Found", { status: 404 });
-    }
+  }
 
     return NextResponse.json(JSON.stringify(user), { status: 200 });
   } catch (error) {
+    console.log(error);
     return NextResponse.json("Internal Server Error", { status: 500 });
   }
 };
@@ -52,6 +52,7 @@ export const DELETE = async (request,{params}) => {
 
     return NextResponse.json({ message: "User deleted" }, { status: 200 });
   } catch (error) {
+  
     return NextResponse.json({ error: "Internal Server Error" }, {
       status: 500,
       headers: {

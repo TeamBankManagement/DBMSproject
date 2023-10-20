@@ -32,7 +32,8 @@ export async function POST(request){
             email,
             pass: hashedPassword,
             image:imgurl,
-            otpaccountType:'Manager',
+            otp,
+            accountType:'Manager',
             verify:false
         })
 

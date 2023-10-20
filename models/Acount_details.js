@@ -22,22 +22,35 @@ const AccountSchema = new mongoose.Schema({
 
 
     account_number : {
+        type: Number,
+        required : [true, ' Account number is required!'],
+        unique: true, 
+    },
+    ifsc : {
         type: String,
-        required : [true, 'From Account number is required!']
+        required : [true, ' IFSC code is required!']
     },
 
-    user_id : {
+    userid : {
         type : mongoose.Schema.Types.ObjectId,
         ref : "User"
     },
-
+    phone: {
+        type: String,
+        required : [true,'Phone no is required!']
+      },
+    aadhar: {
+        type: String,
+        required : [true,'aadhar no is required!'],
+        unique:true,
+      },
     balance : {
-        type : String      
+        type : Number      
     },
 
-    account_type : {
+    acctype : {
         type : String,
-        enum:[current , savings]
+        enum:['current' , 'savings']
     },
 
     branch : {

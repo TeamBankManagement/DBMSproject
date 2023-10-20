@@ -43,7 +43,7 @@ const TableRow = ({ data ,number}) => {
                 <td className="whitespace-nowrap px-4 py-3 sm:px-5">
                   <div className={`badge space-x-2.5 text-xs+ ${data.status=='Completed'?'text-success':''} ${data.status=='Processing'?'text-primary' :''} ${data.status=='Cancelled'?'text-error':''} } `}>
                     <div className="h-2 w-2 rounded-full bg-current" />
-                    <span>gfjghfj</span>
+                    <span>Manager</span>
                   </div>
                 </td>
                 <td className="whitespace-nowrap px-4 py-3 sm:px-5">

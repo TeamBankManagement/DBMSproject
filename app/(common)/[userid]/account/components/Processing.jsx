@@ -1,10 +1,8 @@
 'use client'
 import React, { useEffect } from 'react'
-import('preline')
-const Processing = () => {
-    useEffect(() => {
-        import('preline')
-      }, [])
+
+const Processing = ({status}) => {
+   console.log(status)
   return (
     <>
    {/* Hero */}
@@ -24,7 +22,8 @@ const Processing = () => {
         {/* Title */}
         <div className="mt-5 max-w-2xl">
           <h1 className="block font-semibold text-gray-800 text-4xl md:text-5xl lg:text-6xl dark:text-gray-200">
-            Application Submitted Successfully
+            {status=="Processing" ?'Application Submitted Successfully':'Already Send your Account number in your email'}
+            
           </h1>
         </div>
         {/* End Title */}
@@ -34,7 +33,7 @@ const Processing = () => {
         {/* Buttons */}
         <div className="mt-8 grid gap-3 w-full sm:inline-flex sm:justify-center">
           <a className="inline-flex justify-center items-center gap-x-3 text-center bg-blue-600 hover:bg-blue-700 border border-transparent text-white text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white transition py-3 px-4 dark:focus:ring-offset-gray-800" href="javascript:;">
-            Contact Now
+           {status=="Completed"?'Add Account' :'Contact'}
             <svg className="w-3 h-3" width={16} height={16} viewBox="0 0 16 16" fill="none">
               <path d="M5.27921 2L10.9257 7.64645C11.1209 7.84171 11.1209 8.15829 10.9257 8.35355L5.27921 14" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
             </svg>

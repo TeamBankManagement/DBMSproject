@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
-
 export default async function mail(email,otp) {
   
   const transport = nodemailer.createTransport({
@@ -11,7 +10,7 @@ export default async function mail(email,otp) {
     secure: true,
     auth: {
       user: "mathematicsstudent12345@gmail.com",
-      pass: 'rdyibenvxwvhofhi',
+      pass: 'owtf whta bzrh qlhh',
     },
   });
 
@@ -21,7 +20,7 @@ export default async function mail(email,otp) {
   
     // cc: email, (uncomment this line if you want to send a copy to the sender)
     subject: `Message from Hiranmoy`,
-    html: `<h1>your OTP is : ${otp}</h1>`,
+    html: `<h1>your Account No is :${otp}</h1>`,
   };
 
   const sendMailPromise = () =>

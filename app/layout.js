@@ -19,7 +19,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className='dar'>
+    <html lang="en" className=''>
       <body className={inter.className}>
         <ClientOnly>
         <AuthProvider>
@@ -36,6 +36,7 @@ export default function RootLayout({ children }) {
               </nav>
               <Searchhistory/>
               {children}
+             
               <ToastContainer />
             </div>
           </div>

@@ -35,9 +35,17 @@ export default function AppContextProvider({ children }) {
       documentURL: '',
     },
   });
+  const [add,setAdd]=useState({
+    email:'',
+    account:'',
+    caccount:'',
+    otp:'',
+
+})
+const [curOtp,setCurOtp] = useState("");
   const[allUser,setAllUser]=useState([]);
   const[allOrder,setAllOrder]=useState([]);
-  const [step,setStep]=useState(1);
+  const [step,setStep]=useState(localStorage.getItem('step') || 1);
   
    useEffect(() => {
     
@@ -87,7 +95,7 @@ const handleInputChange = (e) => {
 
   //data filling pending
   const value = {
-    darkMode, setDarkMode,isFocused, setIsFocused,isNotific,setNotific,isSignup,setSignup,open,setOpen,image, setImage,formData, setFormData,handleInputChange,accdata, setAccData,step,setStep,
+    darkMode, setDarkMode,isFocused, setIsFocused,isNotific,setNotific,isSignup,setSignup,open,setOpen,image, setImage,formData, setFormData,handleInputChange,accdata, setAccData,step,setStep,curOtp,setCurOtp,add,setAdd
   };
 
   //step2

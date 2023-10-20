@@ -29,7 +29,6 @@ export default async function mail(email,otp) {
       transport.sendMail(mailOptions, function (err) {
         if (!err) {
           resolve('Email sent');
-          console.log("yes");
          
         } else {
           reject(err.message);

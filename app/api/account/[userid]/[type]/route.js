@@ -9,7 +9,7 @@ export async function POST(request,{params}){
     
       await connect();
       const reqBody = await request.json()
-      console.log(reqBody);
+      
       const {accdata} = reqBody;   
       const {email, name,phone, address, aadhar, pan, doc ,acctype} = accdata;   
      
@@ -55,7 +55,7 @@ export async function POST(request,{params}){
       }
         
       
-
+     
       return NextResponse.json({
           message: "User created successfully",
           success: true,
@@ -98,32 +98,38 @@ export const PUT = async (request,{params}) => {
   }
 };
 export const PATCH = async (request, { params }) => {
-  const { userid} = await request.json();
-  
-
-
+ 
   try {
       await connect();
-
-      // Find the existing prompt by ID
+      const reqBody = await request.json()
+       
+  const {email, name,phone, address, aadhar, pan, doc ,acctype} = reqBody;   
       const existingOrder = await Order.findOne({ userid: params.userid,acctype:params.type });
 
       if (!existingOrder) {
-          return new Response("Prompt not found", { status: 404 });
+          return NextResponse.json("Order not found", { status: 404 });
       }
 
       // Update the order with new data
+      existingOrder.name=name;
+      existingOrder.email=email;
+      existingOrder.phone=phone;
+      existingOrder.address=address;
+      existingOrder.aadhar=aadhar;
+      existingOrder.pan=pan;
+      existingOrder.doc=doc;
+      existingOrder.acctype=acctype;
       existingOrder.draft = false;
       existingOrder.status='Processing'
       try {
         await existingOrder.save();
       } catch (error) {
-        return new Response("Error updating order", { status: 500 });
+        return NextResponse.json("Error updating order", { status: 500 });
       }
-      return new Response("Successfully Submitted the Application", { status: 200 });
+      return NextResponse.json("Successfully Submitted the Application", { status: 200 });
   } catch (error) {
     console.log(error);
-      return new Response("Error Updating Prompt", { status: 500 });
+      return NextResponse.json("Error Updating Order", { status: 500 });
   }
 };
 export const DELETE = async (request,{params}) => {

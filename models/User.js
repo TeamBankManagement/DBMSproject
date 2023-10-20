@@ -15,9 +15,14 @@ const UserSchema = new mongoose.Schema({
         unique: [true, 'Email already exists!'],
         required: [true, 'Email is required!'],
     },
-    accounts: [{
-        type:String,
-}],
+    accounts: [
+        {
+            accountNumber: {
+                type: String,
+                unique: true,
+            }
+        }
+    ],
     cif_id: {
         type: String,
     },

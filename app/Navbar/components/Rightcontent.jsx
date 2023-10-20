@@ -11,12 +11,28 @@ export default function Rightcontent() {
   const {image} = useContext(AppContext);
 
 
-  const { isNotific, setNotific } = useContext(AppContext);
+  const { isNotific, setNotific,darkMode , setDarkMode } = useContext(AppContext);
 
-  const darkMode = false;
+ 
+
+  
+  useEffect(() => {
+    localStorage.setItem('darkMode', darkMode.toString()); // Save the current state to localStorage
+    applyDarkMode(); // Apply dark mode on initial load
+  }, [darkMode]);
+  const applyDarkMode = () => {
+    if (darkMode) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+  };
+  const handleToggle = () => {
+    setDarkMode(!darkMode); // Toggle the state of darkMode
+  };
   return (
     <>
-      <button className="flex items-center justify-center h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+      <button className="flex items-center justify-center h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25" onClick={handleToggle}>
         {darkMode ? (
           <svg
             className="h-6 w-6 text-amber-400"

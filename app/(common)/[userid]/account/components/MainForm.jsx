@@ -19,12 +19,17 @@ const MainForm = ({type,userid}) => {
   const [file2, setFile2] = useState(null);
   // const [loading, setLoading] = useState('loading');
   const { data: session ,status } = useSession();
- console.log(userid);
+ console.log(session);
   const {singleData , loading,error}=useSelector((state)=>state.accountData);
  
  console.log(accdata);
   
-
+ useEffect(() => {
+  // console.log(accountType);    
+  if (session?.user.accountType =='Manager') {
+    setStep(1);
+  }
+}, [session?.user.accountType]);
  
   const handleSubmit = async (e) => {
       const params1={
@@ -127,9 +132,7 @@ file.set('email',session.user?.email);
       });
     
   };
- const nextClick=()=>{
-  setStep(step+1);
- }
+
   return (
     <>
 <div className="card p-4 sm:p-5">
@@ -141,8 +144,8 @@ file.set('email',session.user?.email);
               <FormBody title="Create Account" step={step} userid={userid}/>
               <Document file1={file1} setFile1={setFile1} file2={file2} setFile2={setFile2}/> 
               </>}
-              {step==4 && <Processing/>}
-              {step<4 && <FormFooter handleSubmit={handleSubmit} setStep={setStep} step={step} handleSubmitdoc={handleSubmitdoc} accountType={session?.user.accountType}/>}
+              {step==4 && <Processing status={accdata.status}/>}
+              {step<4 && <FormFooter handleSubmit={handleSubmit} setStep={setStep} step={step} handleSubmitdoc={handleSubmitdoc} accountType={session?.user.accountType} type={type}/> }
                               
             </div>
     </>

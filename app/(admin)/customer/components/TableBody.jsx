@@ -33,7 +33,7 @@ const [openModalIndex, setOpenModalIndex] = useState(-1);
   };
 
   const handleUpdate = async(user) => {
-   
+
     const array={...user,verify:!user.verify};
    
     try {

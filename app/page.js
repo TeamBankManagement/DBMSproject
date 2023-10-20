@@ -7,6 +7,7 @@ import { AppContext } from "@/context/AppContext";
 export default function Home() {
   const { data: session ,status} = useSession();
  const {setImage,setId }=useContext(AppContext);
+ console.log(session);
   if (status === "authenticated") {
 
     return (
@@ -14,7 +15,8 @@ export default function Home() {
         <div className="main-content w-full px-[var(--margin-x)] pb-8 overflow-hidden">
           Signed in as {session.user.email} <br />
           <button onClick={() => signOut()}>Sign out</button>
-        </div>        
+        </div> 
+               
       </>
     )
   }

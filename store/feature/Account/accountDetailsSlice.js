@@ -107,6 +107,7 @@ export const finalupdataAccount = createAsyncThunk(
       const result = await response.json();
       return result;
     } catch (error) {
+      console.log(error);
       return rejectWithValue(error);
     }
   }
@@ -166,7 +167,7 @@ export const accountDetailsSlice = createSlice({
     },
     [createAccount.rejected]: (state, action) => {
       state.loading = false;
-      state.error = action.payload.message;
+      state.error = action.payload;
     },
     [showAccount.pending]: (state) => {
       state.loading = true;
@@ -222,7 +223,7 @@ export const accountDetailsSlice = createSlice({
     },                    
     [updateAccount.rejected]: (state, action) => {
       state.loading = false;
-      state.error = action.payload.message;
+      state.error = action.payload;
     },
     [finalupdataAccount.pending]: (state) => {
       state.loading = true;
@@ -234,7 +235,7 @@ export const accountDetailsSlice = createSlice({
     },                    
     [finalupdataAccount.rejected]: (state, action) => {
       state.loading = false;
-      state.error = action.payload.message;
+      state.error = action.payload;
     },
   },
 })

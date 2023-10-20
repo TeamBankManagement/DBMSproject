@@ -1,11 +1,13 @@
 "use client";
 import { AppContext } from "@/context/AppContext";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import React, { useContext } from "react";
 
 const Example = () => {
   const { open,setOpen } = useContext(AppContext);
-  return (
+  const {data:session , status} = useSession();
+    return (
     <>
       <div className="sidebar-panel">
         <div className="flex h-full grow flex-col bg-white pl-2 dark:bg-navy-750">
@@ -145,7 +147,7 @@ const Example = () => {
                     className="group flex justify-between space-x-2 rounded-lg bg-primary/10 p-2 tracking-wide text-primary outline-none transition-all dark:bg-accent-light/10 dark:text-accent-light"
                     href="/login"
                   >
-                    <span>Sign in</span>
+                    <span>Account Details</span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-4.5 w-4.5 text-error"
@@ -177,7 +179,7 @@ const Example = () => {
               <div x-data="{expanded:false}">
                 <div className="flex items-center justify-between px-4">
                   <span className="text-xs font-medium uppercase">
-                    Workspace
+                    Payments
                   </span>
                   <div className="-mr-1.5 flex">
                     <button className="flex items-center justify-center h-6 w-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
@@ -294,8 +296,7 @@ const Example = () => {
                               d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                             />
                           </svg>
-                          <span className="text-slate-800 dark:text-navy-100">
-                            Members
+                          <span className="text-slate-800 dark:text-navy-100">To Bank
                           </span>
                         </div>
                       </Link>
@@ -326,8 +327,7 @@ const Example = () => {
                               d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                             />
                           </svg>
-                          <span className="text-slate-800 dark:text-navy-100">
-                            Setting
+                          <span className="text-slate-800 dark:text-navy-100">To Mobile
                           </span>
                         </div>
                       </Link>
@@ -358,8 +358,7 @@ const Example = () => {
                               d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                             />
                           </svg>
-                          <span className="text-slate-800 dark:text-navy-100">
-                            Timetable
+                          <span className="text-slate-800 dark:text-navy-100">Aadhar Payment
                           </span>
                         </div>
                       </Link>
@@ -369,9 +368,9 @@ const Example = () => {
               </div>
             </div>
             <div className="flex justify-between p-4">
-              <Link href="/account">
-                <button className="btn h-11 w-full justify-between bg-gradient-to-r from-purple-500 to-indigo-600 text-white">
-                  <span> Create Account </span>
+              {status === "authenticated"? (<button className="btn h-11 w-full justify-between bg-gradient-to-r from-purple-500 to-indigo-600 text-white"
+              onClick={() => signOut()}>
+                  <span> Log Out </span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
@@ -386,8 +385,27 @@ const Example = () => {
                       d="M13 5l7 7-7 7M5 5l7 7-7 7"
                     />
                   </svg>
-                </button>
-              </Link>
+                </button>):( <Link href="/account">
+
+<button className="btn h-11 w-full justify-between bg-gradient-to-r from-purple-500 to-indigo-600 text-white">
+  <span>  Create Account </span>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-5 w-5"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M13 5l7 7-7 7M5 5l7 7-7 7"
+    />
+  </svg>
+</button>
+</Link>)}
+             
             </div>
           </div>
         </div>

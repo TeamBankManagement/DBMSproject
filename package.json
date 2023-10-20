@@ -26,6 +26,7 @@
     "filepond-plugin-image-preview": "^4.6.11",
     "flowbite": "^1.8.1",
     "flowbite-react": "^0.6.4",
+    "fs": "^0.0.1-security",
     "fs-extra": "^11.1.1",
     "immer": "^10.0.3",
     "mongoose": "^7.5.0",

@@ -102,6 +102,7 @@ export const updateUser = createAsyncThunk(
       const result = await response.json();
       return result;
     } catch (error) {
+      console.log(error);
       return rejectWithValue(error);
     }
   }
