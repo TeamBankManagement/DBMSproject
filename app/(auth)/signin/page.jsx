@@ -6,7 +6,7 @@ import { Emailsvg, Locksvg } from "../components/Svg.jsx";
 import { useRouter } from "next/navigation";
 import { AppContext } from "@/context/AppContext.js";
 import { FaMicrosoft, FaGoogle } from 'react-icons/fa';
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { toast } from 'react-toastify';
 import Link from "next/link.js";
 import Tab from "../components/Tab.jsx";
@@ -16,7 +16,7 @@ const Page = () => {
     backgroundImage: 'url("")',
   };
   const { formData,setFormData, handleInputChange } = useContext(AppContext);
-
+ const {status} = useSession();
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -64,7 +64,10 @@ const Page = () => {
       });
     }
   };
+  if (status === "authenticated") {
 
+    redirect("/home");
+  }
   return (
     <>
       <div
