@@ -66,7 +66,7 @@ const Page = () => {
   };
   if (status === "authenticated") {
 
-    router.replace("/home");
+    router.replace("/choose");
   }
   return (
     <>
