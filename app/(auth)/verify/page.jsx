@@ -7,7 +7,7 @@ import React, { useContext, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
-const page = () => {
+const Page = () => {
 const {curOtp,add}= useContext(AppContext);
 
 const [otp, setOtp] = useState(['', '', '', '']);
@@ -128,4 +128,4 @@ const handleAdd= async(user) => {
   )
 }
 
-export default page
+export default Page
