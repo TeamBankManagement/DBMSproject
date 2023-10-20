@@ -8,6 +8,11 @@ export default function Home() {
   const { data: session ,status} = useSession();
  const {setImage,setId }=useContext(AppContext);
  console.log(session);
+
+ if (status === "unauthenticated") {
+
+  redirect("/signin");
+}
   if (status === "authenticated") {
 
     return (
@@ -20,10 +25,7 @@ export default function Home() {
       </>
     )
   }
-  if (status === "unauthenticated") {
-
-    redirect("/signin");
-  }
+ 
 
 
   return (
