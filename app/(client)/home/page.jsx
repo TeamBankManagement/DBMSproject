@@ -4,6 +4,7 @@ import Serivice from './components/Serivice';
 import Footer from '@/app/Navbar/Footer';
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
+import Image from 'next/image';
 
 const Carousel = () => {
   const images = [
@@ -75,7 +76,9 @@ const {status} = useSession();
             className={`duration-700 ease-in-out ${index === currentIndex ? '' : 'hidden'}`}
             data-carousel-item
           >
-            <img
+            <Image
+            width={1600}
+            height={800}
               src={image}
               className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
               alt={`Slide ${index + 1}`}

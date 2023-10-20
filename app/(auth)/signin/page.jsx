@@ -66,7 +66,7 @@ const Page = () => {
   };
   if (status === "authenticated") {
 
-    redirect("/home");
+    router.replace("/home");
   }
   return (
     <>
