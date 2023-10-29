@@ -18,10 +18,13 @@ export default function Home() {
 useEffect(() => {
  
   if (!isLoaded) {
-    return null;
+    if(!isSignedIn){
+      redirect("/sign-in");
+    }
   }
+  
 
-}, [])
+}, [user])
 if(!session){
  
   if (status === "unauthenticated"){

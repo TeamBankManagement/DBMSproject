@@ -73,15 +73,16 @@ const {data:session} = useSession();
     setAccData(singleData);
     setTemp(false);
   }
-  console.log(session.user.acctype);
-if(singleData.status =='Completed' && session.user.acctype=='Manager'){
+  console.log(singleData.status);
+if(singleData.status =='Completed' && session?.user.acctype=='Manager'){
     redirect('/aproved')
   }
 
-  if(singleData.status =='Completed' && session.user.acctype=='Customer'){
+  if(singleData.status =='Completed' && session?.user.acctype=='Customer'){
     redirect('/add-account')
   }
- if (singleData.status ==="Processing" && session?.user.acctype=="Customer"){
+console.log(session?.user.acctype)
+ if (singleData.status =='Processing' && session?.user.acctype=='Customer'){
     redirect ('/processing')
   }
 

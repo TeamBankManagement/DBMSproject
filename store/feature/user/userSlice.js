@@ -111,6 +111,30 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
+export const updateUserpin = createAsyncThunk(
+  "updateUserpin",
+  async (data, { rejectWithValue }) => {
+    console.log("updated data", data);
+    const response = await fetch(
+      `/api/users/${data.id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+
+    try {
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error);
+    }
+  }
+);
 
 export const userSlice = createSlice({
   name: "userData",
@@ -278,6 +302,23 @@ export const userSlice = createSlice({
   
     },                    
     [updateUser.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload.message;
+    },
+    [updateUserpin.pending]: (state) => {
+      state.loading = true;
+    },
+    [updateUserpin.fulfilled]: (state, action) => {
+      state.loading = false;
+      console.log(action.payload)
+      const userData = action.payload;
+  state.users = state.users.map((user) =>
+    user._id === userData._id ? userData : user
+  );
+  console.log(state.users);
+  
+    },                    
+    [updateUserpin.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload.message;
     },

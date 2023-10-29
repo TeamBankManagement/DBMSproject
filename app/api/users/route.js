@@ -38,8 +38,8 @@ export async function POST(request) {
             onboarded,
             path,
             status:true,
+            epin:null,
         })
-
     const savedUser = await newUser.save()    
     
 

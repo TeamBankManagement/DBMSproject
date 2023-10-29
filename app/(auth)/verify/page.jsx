@@ -31,7 +31,7 @@ const handleAdd= async(user) => {
 
   const enteredOTP = otp.join('');
   console.log(enteredOTP);
-  if(enteredOTP!==curOtp){
+  if(enteredOTP!=session?.user.otp){
     toast.error('Otp verification failed!! Please try Again later..', {
           
       theme: 'light',
@@ -42,10 +42,8 @@ const handleAdd= async(user) => {
   const newAccount = {
     accountNumber: add.account,
   };
-  
-  // Check if the account number already exists in the accounts array
-  const accountExists = session.user.accounts.some(account => account.accountNumber === newAccount.accountNumber);
-  
+ 
+  const accountExists = session.user.accounts.some(account => account.accountNumber === newAccount.accountNumber);  
   if (!accountExists) {
     const newUser = {
       ...session.user,
@@ -55,12 +53,11 @@ const handleAdd= async(user) => {
  
   try {
     await dispatch(updateUser(array)).unwrap();
-   router.replace("/home");
+   router.replace("/");
   } catch (error) {
     console.error("Error updating user:", error);
   }
 }
-
 }
   return (
     <>
@@ -74,7 +71,7 @@ const handleAdd= async(user) => {
           <p>Email Verification</p>
         </div>
         <div className="flex flex-row text-sm font-medium text-gray-400">
-          <p>We have sent a code to your email ba**@dipainhouse.com</p>
+          <p>We have sent a code to your email </p>
         </div>
       </div>
       <div>

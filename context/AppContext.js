@@ -88,12 +88,50 @@ const handleInputChange = (e) => {
 };
 
 
+const MailSend = async(userid , email) =>{
+  const userdata ={
+    userid,
+    email,
+  }
+ 
+  try {
+    const response = await fetch('/api/email', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userdata),
+    });
 
+    if (!response.ok) {
+      // Handle the error if the response status is not okay (e.g., 4xx or 5xx)
+      const errorData = await response.json();
+      toast.warn('Please Check your email Id', {
+      
+        theme: darkMode ? 'dark' : 'light',
+        });
+      throw new Error(errorData.error || 'Failed to send email');
+    }
+   
+    toast.success('Email send successfully', {
+      
+      theme: 'light',
+      // theme: darkMode ? 'dark' : 'light',
+      });
+    // Output the response message
+    const responseData = await response.json();
+   setCurOtp(JSON.parse(responseData).otp);
+
+   router.replace("/verify")
+  } catch (error) {
+    console.log('Error:', error.message);
+  }
+}
 
 
   //data filling pending
   const value = {
-    darkMode, setDarkMode,isFocused, setIsFocused,isNotific,setNotific,isSignup,setSignup,open,setOpen,image, setImage,formData, setFormData,handleInputChange,accdata, setAccData,step,setStep,curOtp,setCurOtp,add,setAdd,isfetch,setIsfetch
+    darkMode, setDarkMode,isFocused, setIsFocused,isNotific,setNotific,isSignup,setSignup,open,setOpen,image, setImage,formData, setFormData,handleInputChange,accdata, setAccData,step,setStep,curOtp,setCurOtp,add,setAdd,isfetch,setIsfetch,MailSend
   };
 
   //step2

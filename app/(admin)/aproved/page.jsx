@@ -7,7 +7,7 @@ const Processing = () => {
   
   return (
     <>
-   <ProcessingAproved title="In Process" body=" Application Submitted Successfully" desc="your application has been submitted successfully and your account number will be sent to your respective email address ."/>
+   <ProcessingAproved title="Aproved" body=" Application Aproved Successfully" desc="Edit not possible"/>
     </>
   )
 }

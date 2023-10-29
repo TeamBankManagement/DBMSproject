@@ -31,6 +31,9 @@ const UserSchema = new mongoose.Schema({
     pin: {
         type: String,
     },
+    epin: {
+        type: String,
+    },
     order_id:String,
     otp:{
         type: String,

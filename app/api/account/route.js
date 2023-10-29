@@ -43,12 +43,8 @@ export async function POST(request) {
         await Order.updateOne(
             { _id: _id },
             { $set: { status: status } }
-          );
-          console.log(email);
+          );        
           mail(email,account_number);
-
-
-
 
         return NextResponse.json({
             message: "User created successfully",

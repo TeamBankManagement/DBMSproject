@@ -16,7 +16,7 @@ const Service = ({serviceItems,title}) => {
           <div className="grid grid-cols-2 gap-1 sm:grid-cols-2 sm:gap-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-2">
             {serviceItems.map((item) => (
               <div className="relative p-1" key={item.id}>
-               <Link href='#'>
+               <Link href={`${item.to}`}>
                {/* bg-gradient-to-r from-slate-300 to-indigo-100  */}
                <div className="rounded-3xl p-4 transition-shadow bg-gradient-to-r from-accent to-purple-400 bg-accent duration-300 hover:shadow-lg hover:shadow-primary/50 dark:bg-accent dark:shadow-accent/50 dark:hover:shadow-accent/50 flex items-center flex-col relative">
                   <Image width={96} height={96} src={item.imageSrc} alt="service" className="" />

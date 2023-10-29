@@ -1,31 +1,27 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import Input from "../components/Input.jsx";
-import { Emailsvg, Locksvg } from "../components/Svg.jsx";
+import Input from "@/app/(pin)/components/Input";
+import { Emailsvg, Locksvg } from "@/app/(pin)/components/Svg";
 import { redirect, useRouter } from "next/navigation";
-import { useUser } from "@clerk/nextjs";
+
 import { toast } from 'react-toastify';
 import Link from "next/link.js";
 import { useDispatch, useSelector } from "react-redux";
-import { createUser } from "@/store/feature/user/userSlice.js";
+import { updateUserpin } from "@/store/feature/user/userSlice.js";
+import { useSession } from "next-auth/react";
 const Page = () => {
     
   // const bgImageStyle = {
   //   backgroundImage: 'url("")',
   // };/
-
-const { isSignedIn, user, isLoaded } = useUser();
+const {data:session} = useSession();
 const [formData, setFormData] = useState({    
   pass: '',
   cpass:'',
 });
 const dispatch = useDispatch();
 const router=useRouter();
-if (!isLoaded) {
-    return null;
-  }
- 
   
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -37,18 +33,17 @@ if (!isLoaded) {
   };
   const handleSubmit = () => {
   const { pass ,cpass} = formData;
-
   
     if (pass==="" || cpass === "") {
-      const errorMessage = "Please provide both pin.";
+      const errorMessage = "Please provide both ePIN.";
       toast.error(errorMessage, {
         autoClose: 2000,
         position: 'top-center',
       });
       return;
-    }
+    }    
     if (pass!== cpass ) {
-      const errorMessage = "Pin not matched";
+      const errorMessage = "ePIN not matched";
       toast.error(errorMessage, {
         autoClose: 2000,
         position: 'top-center',
@@ -56,30 +51,23 @@ if (!isLoaded) {
       return;
     }
    
-    const loadingToastId = toast.loading('setting pin...', {
+    const loadingToastId = toast.loading('setting ePIN...', {
         autoClose: false,
         closeOnClick: false,
         position: 'top-center',
       });
       
     const data={
-        userid:user.id,
-        username:user.fullName,
-        email:user.primaryEmailAddress.emailAddress,
-        phone:user.phoneNumbers[0].phoneNumber,
-        pin:pass,
-        image:user.imageUrl,
-        verify:true,
-        acctype:'Customer',
-        onboarded: true,
-        path: '/',
-    } 
+       id:session.user._id,      
+        epin:pass,  
+        pin:null,      
+    }    
 
     try {
-        dispatch(createUser(data)); 
-        router.replace("/enter-pin")  
+        dispatch(updateUserpin(data)); 
+        router.replace("/")  
         toast.dismiss(loadingToastId);           
-        toast.success('Pin setup successful', {
+        toast.success('ePIN setup successful', {
             autoClose: 3000,
             position: 'top-center',
           });

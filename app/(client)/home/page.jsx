@@ -17,31 +17,37 @@ const Carousel = () => {
       id: 1,
       title: 'Account Details',
       imageSrc: '/Images/service1.svg',
+      to:''
     },
     {
       id: 2,
       title: 'Payment to Mobile',
       imageSrc: '/Images/service2.svg',
+      to:'/transaction'
     },
     {
       id: 3,
       title: 'Payment to Bank',
       imageSrc: '/Images/service3.svg',
+      to:''
     },
     {
       id: 4,
       title: 'Transaction History',
       imageSrc: '/Images/service4.svg',
+      to:''
     },
     {
       id: 5,
       title: 'Internet Banking',
       imageSrc: '/Images/service5.svg',
+      to:''
     },
     {
       id: 6,
       title: 'Offer',
       imageSrc: '/Images/service6.svg',
+      to:''
     },
   ];
 

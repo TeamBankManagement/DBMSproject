@@ -1,7 +1,7 @@
 import {connect} from "@/dbConfig/dbConfig";
 import User from "@/models/User";
 import {  NextResponse } from "next/server";
-
+import bcryptjs from "bcryptjs";
 
 export const GET = async (request, { params }) => {  
   try {
@@ -40,7 +40,38 @@ export const PUT = async (request,{params}) => {
     return NextResponse.json("Internal Server Error", { status: 500 });
   }
 };
+export const PATCH = async (request, { params }) => {
+ 
+  try {
+      await connect();
+      const reqBody = await request.json()
+       
+      const { pin , epin } = reqBody 
+      const existingUser= await User.findById(params.id);
 
+      if (!existingUser) {
+          return NextResponse.json("User not found", { status: 404 });
+      }
+      const salt = await bcryptjs.genSalt(10);
+      if(pin){
+        const hashedPin= await bcryptjs.hash(pin, salt);
+        existingUser.pin=hashedPin;
+      }
+       if(epin) {
+        const hashedEpin= await bcryptjs.hash(epin, salt);
+        existingUser.epin=hashedEpin;
+      }
+      try {
+        await existingUser.save();
+      } catch (error) {
+        return NextResponse.json("Error updating order", { status: 500 });
+      }
+      return NextResponse.json("Successfully Updated", { status: 200 });
+  } catch (error) {
+    console.log(error);
+      return NextResponse.json("Error Updating Pin", { status: 500 });
+  }
+};
 export const DELETE = async (request,{params}) => {
   try {
     await connect();
