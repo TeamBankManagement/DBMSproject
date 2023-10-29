@@ -3,14 +3,11 @@ import { deleteUser, showAllUser, updateUser } from '@/store/feature/user/userSl
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 const TableBody = () => {
-  const [isShowPopper, setIsShowPopper] = useState(false);
-
   
-  const dispatch=useDispatch();
-  const {users,loading}  = useSelector((state) => state.userData);
+
+const dispatch=useDispatch();
+const {users,loading}  = useSelector((state) => state.userData);
 const [openModalIndex, setOpenModalIndex] = useState(-1);
-
-
   useEffect(() => {
     dispatch(showAllUser());
   }, [dispatch]);
@@ -78,7 +75,7 @@ const [openModalIndex, setOpenModalIndex] = useState(-1);
             {user.username}
           </td>
           <td className="whitespace-nowrap px-4 py-3 sm:px-5">{user.email}</td>
-          <td className="whitespace-nowrap px-4 py-3 sm:px-5">{user.phone}1234567890</td>
+          <td className="whitespace-nowrap px-4 py-3 sm:px-5">{user.phone}</td>
           <td className="whitespace-nowrap px-4 py-3 sm:px-5">
             <div className={`badge rounded-full ${user.role_bg}`}>
               {user.role}

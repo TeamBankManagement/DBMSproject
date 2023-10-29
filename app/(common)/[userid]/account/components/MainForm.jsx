@@ -26,16 +26,20 @@ const MainForm = ({type,userid}) => {
   
  useEffect(() => {
   // console.log(accountType);    
-  if (session?.user.accountType =='Manager') {
+  if (session?.user.accounttype =='Manager') {
     setStep(1);
   }
-}, [session?.user.accountType]);
+  if(session?.user.accounttype =='customer'){
+    setStep(singleData.step);
+  }
+}, [session?.user.accounttype]);
  
   const handleSubmit = async (e) => {
       const params1={
         accdata,
         userid,
-        acctype:type
+        acctype:type,
+        step,
       }
       console.log(accdata);
       
@@ -133,6 +137,7 @@ file.set('email',session.user?.email);
     
   };
 
+
   return (
     <>
 <div className="card p-4 sm:p-5">
@@ -145,7 +150,7 @@ file.set('email',session.user?.email);
               <Document file1={file1} setFile1={setFile1} file2={file2} setFile2={setFile2}/> 
               </>}
               {step==4 && <Processing status={accdata.status}/>}
-              {step<4 && <FormFooter handleSubmit={handleSubmit} setStep={setStep} step={step} handleSubmitdoc={handleSubmitdoc} accountType={session?.user.accountType} type={type}/> }
+              {<FormFooter handleSubmit={handleSubmit} setStep={setStep} step={step} handleSubmitdoc={handleSubmitdoc} accountType={session?.user.acctype} type={type}/> }
                               
             </div>
     </>

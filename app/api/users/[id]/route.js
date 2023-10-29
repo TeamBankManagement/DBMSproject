@@ -5,16 +5,22 @@ import {  NextResponse } from "next/server";
 
 export const GET = async (request, { params }) => {  
   try {
-    await connect();    
-    const user = await User.findById(params.id);
+    await connect(); 
+    const {id} = params ;   
+    // const user = await User.findById(params.id);
+    console.log(id);
+    const user = await User.findOne({userid:id});
+console.log(user);
     if (!user) {
         return NextResponse.json("User Not Found", { status: 404 });
 }
     return NextResponse.json(JSON.stringify(user), { status: 200 });
   } catch (error) {
+    console.log(error);
     return NextResponse.json("Internal Server Error", { status: 500 });
   }
 };
+
 export const PUT = async (request,{params}) => {
   console.log(params.id);
   try {

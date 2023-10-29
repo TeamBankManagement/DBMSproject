@@ -3,7 +3,7 @@ import User from "@/models/User";
 import Employee from "@/models/Employee";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
-import mail from './mail'
+import mail from './mail';
 import OTPGenerator from 'otp-generator';
 
 

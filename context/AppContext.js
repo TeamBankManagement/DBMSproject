@@ -13,7 +13,7 @@ export default function AppContextProvider({ children }) {
    const [isSignup,setSignup]=useState(false);
    const [open,setOpen]=useState(false);
    const [image, setImage] = useState("");
-   
+   const [isfetch,setIsfetch] = useState(false);
   //  const [id, setId] = useState("");
    const [accdata, setAccData] = useState({
     _id:'',
@@ -30,6 +30,7 @@ export default function AppContextProvider({ children }) {
     aadhar: '',
     pan: '',
     draft:'',
+    step:'',
     doc: {
       documentName: '',
       documentURL: '',
@@ -45,7 +46,7 @@ export default function AppContextProvider({ children }) {
 const [curOtp,setCurOtp] = useState("");
   const[allUser,setAllUser]=useState([]);
   const[allOrder,setAllOrder]=useState([]);
-  const [step,setStep]=useState(localStorage.getItem('step') || 1);
+  const [step,setStep]=useState(1);
   
    useEffect(() => {
     
@@ -73,11 +74,8 @@ useEffect(() => {
 }, [open])
 
 //nor require
-const [formData, setFormData] = useState({
-  username:'',
-  email: '',
+const [formData, setFormData] = useState({  
   pass: '',
-  type:'customer',
 });
 
 const handleInputChange = (e) => {
@@ -95,7 +93,7 @@ const handleInputChange = (e) => {
 
   //data filling pending
   const value = {
-    darkMode, setDarkMode,isFocused, setIsFocused,isNotific,setNotific,isSignup,setSignup,open,setOpen,image, setImage,formData, setFormData,handleInputChange,accdata, setAccData,step,setStep,curOtp,setCurOtp,add,setAdd
+    darkMode, setDarkMode,isFocused, setIsFocused,isNotific,setNotific,isSignup,setSignup,open,setOpen,image, setImage,formData, setFormData,handleInputChange,accdata, setAccData,step,setStep,curOtp,setCurOtp,add,setAdd,isfetch,setIsfetch
   };
 
   //step2

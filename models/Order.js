@@ -43,8 +43,7 @@ const OrderSchema = new mongoose.Schema({
 },
   draft : {
     type : Boolean,
-},
-  
+},  
 });
 
 const Order = mongoose.models.Order || mongoose.model("Order", OrderSchema);

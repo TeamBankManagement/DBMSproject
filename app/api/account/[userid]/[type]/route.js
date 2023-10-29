@@ -3,34 +3,31 @@ import User from "@/models/User";
 import {  NextResponse } from "next/server";
 import Order from "@/models/Order";
 
-
 export async function POST(request,{params}){
   try {
-    
       await connect();
-      const reqBody = await request.json()
-      
-      const {accdata} = reqBody;   
-      const {email, name,phone, address, aadhar, pan, doc ,acctype} = accdata;   
-     
-      
-      const orders = await Order.find({ userid:params.userid });
+      const reqBody = await request.json();   
+      const {accdata} = reqBody;        
+      const {email, name,phone, address,aadhar, pan, doc ,acctype} = accdata;
+      const orders = await Order.findOne({ userid:params.userid });
       const user = await User.findById(params.userid);
-      let alreadyExist = false;
-      
-      if (user && orders.length > 0) {
+      let alreadyExist = false;      
+      console.log(orders);
+      if (user && orders && orders.length > 0) {  
+        console.log("Hiranmoy");          
         for (const order of orders) {
           if (order.acctype === acctype) {
             alreadyExist = true;
             break; 
           }
         }
-      }       
-      
+      }
+
+      console.log("Hiranmoy"); 
       if (alreadyExist) {
         return NextResponse.json("Already Exist", {status: 409})
-      }
-     
+      } 
+
       if (!user) {
           return NextResponse.json("User Not Found", { status: 404 });
         }
@@ -46,14 +43,13 @@ export async function POST(request,{params}){
         pan,
         doc,
         draft:false,
-        status:'Processing'
+        status:'Processing',
       });
       try {
         await newOrder.save()  
       } catch (error) {
         console.log(error);
-      }
-        
+      }       
       
      
       return NextResponse.json({

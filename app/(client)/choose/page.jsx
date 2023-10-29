@@ -1,22 +1,17 @@
 'use client'
 import React, { useState } from 'react';
-
 import Link from 'next/link';
 import { redirect } from "next/navigation";
 import { useSession } from 'next-auth/react';
-
-
-function AccountCreation() {
-
+function Choose() {
   const [atype, setAtype] = useState("savings");
  const {data:session,status}=useSession();
-
  if(session?.user.accounts.length>0){
   redirect("/home");
- }
-  return (
+ } 
+ return (
     <div className="relative p-6 md:p-16">
-      {/* Grid */}
+      {/*Grid*/}
       <div className="relative z-10 lg:grid lg:grid-cols-12 lg:gap-16 lg:items-center">
         <div className="mb-10 lg:mb-0 lg:col-span-6 lg:col-start-8 lg:order-2">
           <h2 className="text-2xl text-gray-800 font-bold sm:text-3xl dark:text-gray-200">
@@ -160,5 +155,5 @@ function AccountCreation() {
   );
 }
 
-export default AccountCreation;
+export default Choose;
 

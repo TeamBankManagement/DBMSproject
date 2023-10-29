@@ -1,25 +1,27 @@
 import mongoose from "mongoose";
 
-const UserSchema = new mongoose.Schema({ 
+const UserSchema = new mongoose.Schema({
+    userid:{
+        type:String,
+        required: [true, 'UserId is required!'],
+    } ,
     username: {
         type: String,
-        required: [true, 'Username is required!'],
-    },
-    pass: {
-        type: String,
-        required: [true, 'password is required!'],
-       
     },
     email: {
         type: String,
         unique: [true, 'Email already exists!'],
         required: [true, 'Email is required!'],
     },
+    phone: {
+        type: String,
+        unique: [true, 'Phone Number already exists!'],
+        required: [true, 'Pnone Number is required!'],
+    },
     accounts: [
         {
             accountNumber: {
                 type: String,
-                unique: true,
             }
         }
     ],
@@ -39,14 +41,15 @@ const UserSchema = new mongoose.Schema({
     status:{
         type: Boolean,
     },
-
-    
-    // [
-    //     {
-    //         // type: mongoose.Schema.Types.ObjectId,
-    //         ref: "order",
-    //     },
-    // ],
+    acctype:{
+        type:String,
+    },    
+    onboarded:{
+        type:Boolean,
+    },
+    path:{
+        type:String,
+    },
     session: [{
         session_id: Number,
         online_Status: Boolean,
@@ -54,6 +57,9 @@ const UserSchema = new mongoose.Schema({
         end_time: Date
     }],
     image:String,
+
+
+
   
 });
 

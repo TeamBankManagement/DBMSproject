@@ -5,6 +5,8 @@ import React, { useContext, useState, useEffect } from "react";
 import Notificationmodal from "./modal/Notificationmodal";
 import { AppContext } from "@/context/AppContext";
 import Notificationsvg from "@/svg/Notification";
+import { UserButton } from "@clerk/nextjs";
+import { Custom } from "./Custom";
 
 export default function Rightcontent() {
 
@@ -72,8 +74,10 @@ export default function Rightcontent() {
       {/* dekhanor jonno class show & & this is notification model*/}
       <Notificationmodal />
       {/* Right Sidebar Toggle */}
-      <div class="avatar h-8 w-8">
-        <img class="rounded-full" src={image} alt="avatar" />
+      <div>
+        {/* <img class="rounded-full" src={image} alt="avatar" /> */}
+        {/* <UserButton afterSignOutUrl="/sign-in" /> */}
+        <Custom/>
       </div>
     </>
   );

@@ -16,7 +16,7 @@ export default async function mail(email,otp) {
   });
 
   const mailOptions= {
-    from: "saptakexterio@gmail.com",
+    from: "mathematicsstudent12345@gmail.com",
     to: [email],
   
     // cc: email, (uncomment this line if you want to send a copy to the sender)

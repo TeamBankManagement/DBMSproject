@@ -5,6 +5,7 @@ import { AppContext } from "@/context/AppContext";
 import { useDispatch, useSelector } from 'react-redux'
 import { showAccount } from '@/store/feature/Account/accountDetailsSlice';
 import { redirect } from "next/navigation";
+import { useSession } from "next-auth/react";
 function Step({ number, title }) {
   const { step } = useContext(AppContext);
   return (
@@ -40,6 +41,7 @@ function MainContent(params) {
   const dispatch = useDispatch();
   const {accdata,setAccData,step,setStep}=useContext(AppContext);
   const {singleData , loading}=useSelector((state)=>state.accountData);
+const {data:session} = useSession();
  const [temp,setTemp]=useState(false);
   useEffect(() => {
     const fetchData = async () => {
@@ -67,13 +69,21 @@ function MainContent(params) {
   // }  
 
   if(temp){
-    if(singleData.status ==="Completed"){
-      redirect('/add-account')
-    }
+   
     setAccData(singleData);
     setTemp(false);
   }
+  console.log(session.user.acctype);
+if(singleData.status =='Completed' && session.user.acctype=='Manager'){
+    redirect('/aproved')
+  }
 
+  if(singleData.status =='Completed' && session.user.acctype=='Customer'){
+    redirect('/add-account')
+  }
+ if (singleData.status ==="Processing" && session?.user.acctype=="Customer"){
+    redirect ('/processing')
+  }
 
 
 

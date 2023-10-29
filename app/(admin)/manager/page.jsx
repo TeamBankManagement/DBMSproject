@@ -1,11 +1,20 @@
+'use client'
 import React from 'react'
 import OrderOver from '../components/OrderOver'
 import Balence from '../components/Balence'
 import Table from '../components/Table';
 import OrderTableBody from '../components/OrderTableBody';
+import { useUser } from '@clerk/nextjs';
+import { useSession } from 'next-auth/react';
+import { redirect } from 'next/navigation';
 
-const page = () => {
+const Manager = () => {
+  const { isSignedIn, user, isLoaded } = useUser(); 
+  const { data: session, status } = useSession();
   
+if(session?.user.acctype !="Manager"){
+  redirect("/")
+}
   return (
     <>
     <div className="main-content w-full px-[var(--margin-x)] pb-8">
@@ -21,4 +30,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Manager

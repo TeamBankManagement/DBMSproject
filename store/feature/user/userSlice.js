@@ -21,8 +21,10 @@ export const createUser = createAsyncThunk(
 
     try {
       const result = await response.json();
+      console.log(error);
       return result;
     } catch (error) {
+      console.log(error);
       return rejectWithValue(error);
     }
   }
@@ -32,13 +34,14 @@ export const createUser = createAsyncThunk(
 export const showUser = createAsyncThunk(
   "showUser",
   async (args, { rejectWithValue }) => {
+    console.log(args);
     const response = await fetch(
-      "https://641dd63d945125fff3d75742.mockapi.io/crud"
+      `/api/users/${args}`,{
+      method: "GET",
+      }
     );
-
     try {
       const result = await response.json();
-      console.log(result);
       return result;
     } catch (error) {
       return rejectWithValue(error);
@@ -77,6 +80,7 @@ export const deleteUser = createAsyncThunk(
       console.log(result);
       return result;
     } catch (error) {
+      console.log(error);
       return rejectWithValue(error);
     }
   }
@@ -115,6 +119,7 @@ export const userSlice = createSlice({
     loading: false,
     error: null,
     searchData: [],
+    currentUser:null,
   },
 
   reducers: {
@@ -226,7 +231,7 @@ export const userSlice = createSlice({
     },
     [showUser.fulfilled]: (state, action) => {
       state.loading = false;
-      state.users = action.payload;
+      state.currentUser = action.payload;
     },
     [showUser.rejected]: (state, action) => {
       state.loading = false;

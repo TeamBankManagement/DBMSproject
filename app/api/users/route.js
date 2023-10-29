@@ -11,33 +11,38 @@ export async function POST(request) {
     try {
         await connect();
         const reqBody = await request.json()
-        const { username, email, pass } = reqBody
-
+        const { userid,username, email,phone,image,verify,acctype,onboarded,path,pin } = reqBody
+        
+            console.log(reqBody);
         const user = await User.findOne({ email })
 
         if (user) {
-            return NextResponse.json({ error: "User already exists" }, { status: 400 })
+                      return NextResponse.json({ error: "User already exists" }, { status: 400 })
         }
         //hash password
+        
         const salt = await bcryptjs.genSalt(10)
-        const hashedPassword = await bcryptjs.hash(pass, salt)
-        const imgurl = `https://api.dicebear.com/5.x/initials/svg?seed=${username}`;
-        const otp = OTPGenerator.generate(6, { upperCaseAlphabets: false, lowerCaseAlphabets: false, specialChars: false });
-
+        console.log("hiranmoy")
+        const hashedPassword = await bcryptjs.hash(pin, salt)
+       
+            console.log("hiranmoy Mandal");
         const newUser = new User({
+            userid,
             username,
             email,
-            pass: hashedPassword,
-            image: imgurl,
-            otp,
-            verify: false,
+            pin: hashedPassword,
+            image,
+            phone,
+            verify,
+            acctype,
+            onboarded,
+            path,
             status:true,
         })
 
-        const savedUser = await newUser.save()
+    const savedUser = await newUser.save()    
+    
 
-        //send verification email
-        mail(email, otp)
 
 
         return NextResponse.json({

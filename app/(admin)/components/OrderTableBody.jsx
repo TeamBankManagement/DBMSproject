@@ -4,14 +4,18 @@ import { TableRowdata } from './Data/TableData'
 import TableRow from './TableRow'
 import { useDispatch, useSelector } from 'react-redux'
 import { showAllAccount } from '@/store/feature/Account/accountDetailsSlice'
+import SkeletonLoader from './SkeletonLoader'
 const OrderTableBody = () => {
    const dispatch = useDispatch();
-   const {accData}=useSelector((state)=>state.accountData);
+   const {accData , loading}=useSelector((state)=>state.accountData);
    useEffect(() => {
     dispatch(showAllAccount());
 
   }, [dispatch]);
-  console.log(accData);
+  
+  if(loading){
+    return <SkeletonLoader/>
+  }
   return (
     <>
        <tbody>

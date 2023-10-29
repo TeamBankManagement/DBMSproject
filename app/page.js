@@ -1,39 +1,57 @@
 'use client'
 import { redirect } from "next/navigation";
 import { useSession, signIn, signOut } from "next-auth/react"
-import { useContext } from "react";
+import { useContext,useEffect } from "react";
 import { AppContext } from "@/context/AppContext";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useUser } from "@clerk/nextjs";
+import { showUser } from "@/store/feature/user/userSlice";
+import Choose from "./(client)/choose/page";
+import Carousel from "./(client)/home/page";
+import Manager from "./(admin)/manager/page";
 export default function Home() {
-  const { data: session ,status} = useSession();
- const {setImage,setId }=useContext(AppContext);
- console.log(session);
-
- if (status === "unauthenticated") {
-
-  redirect("/signin");
-}
-  if (status === "authenticated") {
-
-    return (
-      <>
-        <div className="main-content w-full px-[var(--margin-x)] pb-8 overflow-hidden">
-          Signed in as {session.user.email} <br />
-          <button onClick={() => signOut()}>Sign out</button>
-        </div> 
-               
-      </>
-    )
-  }
+  const { isSignedIn, user, isLoaded } = useUser(); 
+  const { data: session, status } = useSession();
+  const {isfetch,setIsfetch} = useContext(AppContext);
+  const { currentUser, loading } = useSelector((state) => state.userData);
+  const dispatch = useDispatch(); 
+useEffect(() => {
  
+  if (!isLoaded) {
+    return null;
+  }
 
-
-  return (
-    <>
-      <div className="h-screen flex justify-center items-center bg-gray-900">
-
-
+}, [])
+if(!session){
+ 
+  if (status === "unauthenticated"){
+  if (!isfetch && user?.id) {
+    dispatch(showUser(user?.id)); 
+  } 
+if(currentUser ){
+      if (currentUser === "User Not Found" ) {
+        redirect("/set-pin");
+      } else {
+        redirect("/enter-pin");
+      }  
+    }
+  }
+  }
+  if (status === "authenticated") {  
+   
+    return (      
+      <>      
+      {session.user.acctype=="Manager"? (<Manager/>): session?.user.accounts.length>0 ? (<Carousel/>): (<Choose/>)}    
+      </>
+    );
+  }
+  if (loading) {
+    return (
+      <div className="main-content">
+        <h1>Loading...</h1>
       </div>
-    </>
-  )
+    );
+  }
+  
+  return null;
 }
