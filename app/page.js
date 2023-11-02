@@ -16,18 +16,16 @@ export default function Home() {
   const { currentUser, loading } = useSelector((state) => state.userData);
   const dispatch = useDispatch(); 
 useEffect(() => {
- 
-  if (!isLoaded) {
+ console.log("Hiranmoy");
+  
     if(!isSignedIn){
       redirect("/sign-in");
     }
-  }
-  
-
-}, [user])
+ 
+}, [])
 if(!session){
  
-  if (status === "unauthenticated"){
+  // if (status === "unauthenticated"){
   if (!isfetch && user?.id) {
     dispatch(showUser(user?.id)); 
   } 
@@ -38,7 +36,13 @@ if(currentUser ){
         redirect("/enter-pin");
       }  
     }
+  // }
   }
+  if(status=="loading"){
+    return <div class="h-[100vh] flex flex-col justify-center items-center ">
+    <div class="border-gray-300 h-20 w-20 animate-spin rounded-full border-8 border-t-blue-600"></div>
+    <div class="pt-2 text-xl">Page  </div>
+    </div>
   }
   if (status === "authenticated") {  
    
@@ -50,9 +54,10 @@ if(currentUser ){
   }
   if (loading) {
     return (
-      <div className="main-content">
-        <h1>Loading...</h1>
-      </div>
+       <div className="main-content h-[100vh] flex flex-col justify-center ">
+        <div className="border-gray-300 h-20 w-20 animate-spin rounded-full border-8 border-t-blue-600"></div>
+        <div className="pt-2 text-xl">Page is Loading </div>
+    </div>
     );
   }
   

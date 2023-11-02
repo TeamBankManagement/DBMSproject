@@ -21,11 +21,15 @@ if(status=='loading'){
     return <p>loading</p>
 
 }
+if(!history){
+    return <p> No transactions Yet!</p>
+}
 
     return(
         <div className="h-[60vh] overflow-y-scroll  overflow-x-hidden w-full sm:w-[48vw] mx-auto">
+
             {
-                history.map((data)=>{
+              history &&  history.map((data)=>{
                     return <Transactions key={data._id} {...data}/> 
                 })
             } 

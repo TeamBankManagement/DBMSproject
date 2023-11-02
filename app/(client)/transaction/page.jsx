@@ -43,7 +43,7 @@ const handleSubmit1 =() =>{
       mobileNumber,
       amount 
   }
-    if ((formData.toaccount !== '' && formData.amount === '') || (formData.mobileNumber !== '' && formData.amount === '')) {
+  if ((formData.toaccount === '' && (formData.amount === '') || (formData.mobileNumber == '')) || (formData.mobileNumber === '' && (formData.amount === '') || (formData.toaccount == ''))  ){
       toast.error('Please fill all details');
       return;
     }

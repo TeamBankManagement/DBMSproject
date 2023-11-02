@@ -68,8 +68,7 @@ const {data:session} = useSession();
   //   return <p>Loading...</p>
   // }  
 
-  if(temp){
-   
+  if(temp){   
     setAccData(singleData);
     setTemp(false);
   }

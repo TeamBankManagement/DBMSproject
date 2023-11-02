@@ -2,7 +2,7 @@
 import { AppContext } from '@/context/AppContext';
 import React, { useState,useContext,useEffect } from 'react'
 
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
 import { useSession } from 'next-auth/react';
@@ -19,6 +19,7 @@ const MainForm = ({type,userid}) => {
   const [file2, setFile2] = useState(null);
   // const [loading, setLoading] = useState('loading');
   const { data: session ,status } = useSession();
+  const router = useRouter();
  console.log(session);
   const {singleData , loading,error}=useSelector((state)=>state.accountData);
  
@@ -41,8 +42,6 @@ const MainForm = ({type,userid}) => {
         acctype:type,
         step,
       }
-      console.log(accdata);
-      
     const { name, phone, address, aadhar, pan, doc } = accdata;
    
     if (name ==="" || phone === "" || aadhar === "" || pan === "") {
@@ -66,11 +65,11 @@ const MainForm = ({type,userid}) => {
      
       toast.dismiss(loadingToastId);
     
-      toast.success('Data saved', {
+      toast.success('Account Created Successfully', {
         autoClose: 3000,
         position: 'top-center',
       });
-      redirect("/processing");
+      router.replace("/")
     } catch (error) {
       console.log(error);
       console.error('Error:', error);

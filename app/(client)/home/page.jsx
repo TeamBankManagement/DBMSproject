@@ -29,13 +29,13 @@ const Carousel = () => {
       id: 3,
       title: 'Payment to Bank',
       imageSrc: '/Images/service3.svg',
-      to:''
+      to:'/transaction'
     },
     {
       id: 4,
       title: 'Transaction History',
       imageSrc: '/Images/service4.svg',
-      to:''
+      to:'/account-transaction'
     },
     {
       id: 5,

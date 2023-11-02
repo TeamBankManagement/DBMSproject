@@ -1,13 +1,14 @@
 'use client'
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useSession } from 'next-auth/react';
 function Choose() {
+  const router=useRouter();
   const [atype, setAtype] = useState("savings");
  const {data:session,status}=useSession();
  if(session?.user.accounts.length>0){
-  redirect("/home");
+  router.replace("/");
  } 
  return (
     <div className="relative p-6 md:p-16">
