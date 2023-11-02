@@ -20,8 +20,7 @@ export async function POST(request) {
         
         if (account.length>0) {
             return NextResponse.json("Already Exist", { status: 409 })
-        }
-        console.log("hiran")
+        }       
         
 
 
@@ -47,7 +46,7 @@ export async function POST(request) {
           mail(email,account_number);
 
         return NextResponse.json({
-            message: "User created successfully",
+            message: "Account created successfully",
             success: true,
         })
 

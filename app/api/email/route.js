@@ -20,6 +20,7 @@ export async function PUT(request){
          console.log(JSON.stringify(user));
          
 mail(email,otp);
+console.log("Hiranmoy")
         if (!user) {
            return NextResponse.json("User Not Found", { status: 404 });
        }      

@@ -10,7 +10,6 @@ const OrderTableBody = () => {
    const {accData , loading}=useSelector((state)=>state.accountData);
    useEffect(() => {
     dispatch(showAllAccount());
-
   }, [dispatch]);
   
   if(loading){

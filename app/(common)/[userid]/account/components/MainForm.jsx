@@ -2,7 +2,7 @@
 import { AppContext } from '@/context/AppContext';
 import React, { useState,useContext,useEffect } from 'react'
 
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
 import { useSession } from 'next-auth/react';
@@ -65,13 +65,14 @@ const MainForm = ({type,userid}) => {
   
      
       toast.dismiss(loadingToastId);
-      console.log(error);
+    
       toast.success('Data saved', {
         autoClose: 3000,
         position: 'top-center',
       });
-      
+      redirect("/processing");
     } catch (error) {
+      console.log(error);
       console.error('Error:', error);
       toast.dismiss(loadingToastId);
       toast.error('An error occurred', {

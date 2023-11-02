@@ -7,7 +7,7 @@ import React, { useContext, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
-const Page = () => {
+const Page = ({params}) => {
 const {curOtp,add}= useContext(AppContext);
 
 const [otp, setOtp] = useState(['', '', '', '']);
@@ -28,8 +28,8 @@ const [otp, setOtp] = useState(['', '', '', '']);
   console.log(session);
 const dispatch=useDispatch();
 const router = useRouter();
-const handleAdd= async(user) => {
-
+const handleAdd= async(e) => {
+  e.preventDefault();
   const enteredOTP = otp.join('');
   console.log(enteredOTP);
   if(enteredOTP!=session?.user.otp){
@@ -42,6 +42,7 @@ const handleAdd= async(user) => {
   }
   const newAccount = {
     accountNumber: add.account,
+    accountType:params.type
   };
  
   const accountExists = session.user.accounts.some(account => account.accountNumber === newAccount.accountNumber);  
@@ -50,7 +51,7 @@ const handleAdd= async(user) => {
       ...session.user,
       accounts: [...session.user.accounts, newAccount],
     };
-  const array={...newUser,verify:!user.verify};
+  const array={...newUser};
    
  
   try {

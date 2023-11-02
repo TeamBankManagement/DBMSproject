@@ -2,27 +2,10 @@
 import mongoose from "mongoose";
 
 
-// // Accounts Collection
-// {
-//   _id: ObjectId,
-//   accountNumber: String,
-//   userId: ObjectId, // Reference to User
-//   balance: Number,
-//    accountType: String, // Checking, Savings, etc.
-//    branch:String,
-//   Tax: {
-//    id:
-//    trancition id:
-//    }
-//   loan:loan_id;
-//   card:[card_id1,card_id2];
-// },
-
 const AccountSchema = new mongoose.Schema({
 
-
     account_number : {
-        type: Number,
+        type: String,
         required : [true, ' Account number is required!'],
         unique: true, 
     },

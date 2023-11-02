@@ -79,14 +79,12 @@ if(singleData.status =='Completed' && session?.user.acctype=='Manager'){
   }
 
   if(singleData.status =='Completed' && session?.user.acctype=='Customer'){
-    redirect('/add-account')
+    redirect(`/add-account/${params.params.type}`)
   }
 console.log(session?.user.acctype)
  if (singleData.status =='Processing' && session?.user.acctype=='Customer'){
     redirect ('/processing')
   }
-
-
 
   useEffect(() => {
 

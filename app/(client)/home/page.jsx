@@ -17,7 +17,7 @@ const Carousel = () => {
       id: 1,
       title: 'Account Details',
       imageSrc: '/Images/service1.svg',
-      to:''
+      to:'account-transaction'
     },
     {
       id: 2,

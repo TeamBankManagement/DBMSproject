@@ -2,6 +2,7 @@ import {connect} from "@/dbConfig/dbConfig";
 import User from "@/models/User";
 import {  NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
+import Account from "@/models/Acount_details";
 
 export const GET = async (request, { params }) => {  
   try {
@@ -25,15 +26,19 @@ export const PUT = async (request,{params}) => {
   console.log(params.id);
   try {
     await connect();
-
-    const {verify ,accounts} = await request.json();
-    console.log(accounts);
-    const user = await User.findByIdAndUpdate(params.id, {verify , accounts});
-
+    const reqBody= await request.json();
+    const {accounts}=reqBody;
+   
+    // let accountDetails=await Account.findOne({account_number:accounts[accounts.length - 1].accountNumber});  
+    // if (!accountDetails) {
+    //   return NextResponse.json("Account Not Found", { status: 404 });
+    // }
+      const user = await User.findByIdAndUpdate(params.id, {accounts});
+    
+   
    if (!user) {
       return NextResponse.json("User Not Found", { status: 404 });
   }
-
     return NextResponse.json(JSON.stringify(user), { status: 200 });
   } catch (error) {
     console.log(error);

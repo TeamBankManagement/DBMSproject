@@ -1,5 +1,6 @@
 'use client'
 import { createContext, useState, useEffect, useRef } from "react";
+import { toast } from "react-toastify";
 //step1
 export const AppContext = createContext();
 
@@ -93,7 +94,7 @@ const MailSend = async(userid , email) =>{
     userid,
     email,
   }
- 
+ console.log("Hiranmoy");
   try {
     const response = await fetch('/api/email', {
       method: 'PUT',
@@ -105,6 +106,7 @@ const MailSend = async(userid , email) =>{
 
     if (!response.ok) {
       // Handle the error if the response status is not okay (e.g., 4xx or 5xx)
+      console.log("Hiranmoy")
       const errorData = await response.json();
       toast.warn('Please Check your email Id', {
       
@@ -113,8 +115,7 @@ const MailSend = async(userid , email) =>{
       throw new Error(errorData.error || 'Failed to send email');
     }
    
-    toast.success('Email send successfully', {
-      
+    toast.success('Email send successfully', {      
       theme: 'light',
       // theme: darkMode ? 'dark' : 'light',
       });

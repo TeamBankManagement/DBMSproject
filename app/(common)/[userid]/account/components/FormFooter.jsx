@@ -4,11 +4,13 @@ import {
   finalupdataAccount,
   updateAccount,
 } from "@/store/feature/Account/accountDetailsSlice";
+import { useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 const FormFooter = ({ handleSubmit, setStep, step, handleSubmitdoc,accountType,type,}) => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const [temp1, setTemp1] = useState(true);
   const [temp2, setTemp2] = useState(false);
   const { accdata, setAccData } = useContext(AppContext);
@@ -28,7 +30,8 @@ const FormFooter = ({ handleSubmit, setStep, step, handleSubmitdoc,accountType,t
   const handleAdmin = async() => {
     const status="Completed";
     const {_id, userid,  acctype, phone, aadhar,email}=accdata;
-    const account_number = generateUniqueNumber();
+    const num = generateUniqueNumber();
+    const account_number = num.toString();
     const newAccount = {
       _id,
       account_number,
@@ -63,12 +66,13 @@ const FormFooter = ({ handleSubmit, setStep, step, handleSubmitdoc,accountType,t
           position: 'top-center',
         }); 
       }
-      if(response.ok){
-      toast.dismiss(loadingToastId);     
+      if(response.ok){       
+      toast.dismiss(loadingToastId);        
       toast.success('Account Created Successfully', {
         autoClose: 3000,
         position: 'top-center',
       });  
+      router.replace("/aproved"); 
     } 
     } catch (error) {   
       console.log(error);  
@@ -128,7 +132,7 @@ const FormFooter = ({ handleSubmit, setStep, step, handleSubmitdoc,accountType,t
           <span>Prev</span>
         </button>
         {step === 3 ? (
-  accountType === "customer" ? (
+  accountType === "Customer" ? (
     <button
       className="btn space-x-2 bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
       onClick={Submit}

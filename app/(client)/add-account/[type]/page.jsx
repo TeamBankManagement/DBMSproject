@@ -11,9 +11,9 @@ import React, { useContext, useState } from 'react'
 
 import { toast } from 'react-toastify';
 
-const AddAccount = () => {
+const AddAccount = ({params}) => {
    const {add,setAdd,curOtp,MailSend} = useContext(AppContext);
-
+console.log(params)
 const {data:session} = useSession();
 
 const router=useRouter();

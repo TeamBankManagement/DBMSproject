@@ -91,6 +91,7 @@ export const updateUser = createAsyncThunk(
   "updateUser",
   async (data, { rejectWithValue }) => {
     console.log("updated data", data);
+    console.log(data);
     const response = await fetch(
       `/api/users/${data._id}`,
       {
@@ -101,7 +102,6 @@ export const updateUser = createAsyncThunk(
         body: JSON.stringify(data),
       }
     );
-
     try {
       const result = await response.json();
       return result;

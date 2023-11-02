@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 const TransactionSchema = new mongoose.Schema({
 
-
     from : {
         type: String,
         required : [true, 'From Account number is required!']
@@ -11,22 +10,14 @@ const TransactionSchema = new mongoose.Schema({
     to : {
         type: String,
         required : [true, 'To Account number is required!']
-    },
-
-    account_id: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "account",
-        },
-    ],
-
-    type : {
+    }, 
+    tranType : {
         type : String,
         enum : ['Deposit', 'Withdrawal','Transfer'],      
     },
 
     amount : {
-        type : String,
+        type : Number,
         required : [true, 'Enter valid amount greater than 0']
     },
 

@@ -22,8 +22,12 @@ const UserSchema = new mongoose.Schema({
         {
             accountNumber: {
                 type: String,
+            },
+            accountType: {
+                type: String,
             }
-        }
+        },
+      
     ],
     cif_id: {
         type: String,
