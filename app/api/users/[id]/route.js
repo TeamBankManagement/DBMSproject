@@ -29,11 +29,8 @@ export const PUT = async (request,{params}) => {
     const reqBody= await request.json();
     const {accounts}=reqBody;
    
-    // let accountDetails=await Account.findOne({account_number:accounts[accounts.length - 1].accountNumber});  
-    // if (!accountDetails) {
-    //   return NextResponse.json("Account Not Found", { status: 404 });
-    // }
-      const user = await User.findByIdAndUpdate(params.id, {accounts});
+    
+      const user = await User.findByIdAndUpdate(params.id, {accounts} , { new: true });
     
    
    if (!user) {

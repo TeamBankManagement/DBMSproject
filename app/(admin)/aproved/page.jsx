@@ -7,7 +7,7 @@ const Processing = () => {
   
   return (
     <>
-   <ProcessingAproved title="Aproved" body=" Application Aproved Successfully" desc="Edit not possible"/>
+   <ProcessingAproved title="Aproved" body=" Application approved Successfully" desc="Edit not possible"/>
     </>
   )
 }

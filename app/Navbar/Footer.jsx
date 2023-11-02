@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const Footer = () => {
@@ -8,7 +9,7 @@ const Footer = () => {
     <div className="md:flex md:justify-between">
       <div className="mb-6 md:mb-0">
         <a href="" className="flex items-center">
-          <img src="" className="h-8 mr-3" alt="Bank Logo" />
+          <img src="/Images/iitg_logo_1.png" className="h-8 mr-3" alt="Bank Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Bank Name</span>
         </a>
       </div>
@@ -17,7 +18,7 @@ const Footer = () => {
           <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
           <ul className="text-gray-500 dark:text-gray-400 font-medium">
             <li className="mb-4">
-              <a href="https://flowbite.com/" className="hover:underline">terms & Condition</a>
+              <Link href="/" className="hover:underline">terms & Condition</Link>
             </li>
             <li>
               <a href="https://tailwindcss.com/" className="hover:underline">Policy</a>

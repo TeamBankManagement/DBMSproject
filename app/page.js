@@ -9,6 +9,7 @@ import { showUser } from "@/store/feature/user/userSlice";
 import Choose from "./(client)/choose/page";
 import Carousel from "./(client)/home/page";
 import Manager from "./(admin)/manager/page";
+import Loading from "./components/Loading";
 export default function Home() {
   const { isSignedIn, user, isLoaded } = useUser(); 
   const { data: session, status } = useSession();
@@ -17,11 +18,11 @@ export default function Home() {
   const dispatch = useDispatch(); 
 useEffect(() => {
  console.log("Hiranmoy");
-  
+  if(!isLoaded){
     if(!isSignedIn){
       redirect("/sign-in");
     }
- 
+  }
 }, [])
 if(!session){
  
@@ -39,25 +40,19 @@ if(currentUser ){
   // }
   }
   if(status=="loading"){
-    return <div class="h-[100vh] flex flex-col justify-center items-center ">
-    <div class="border-gray-300 h-20 w-20 animate-spin rounded-full border-8 border-t-blue-600"></div>
-    <div class="pt-2 text-xl">Page  </div>
-    </div>
+    return <Loading/>
   }
   if (status === "authenticated") {  
    
     return (      
       <>      
-      {session.user.acctype=="Manager"? (<Manager/>): session?.user.accounts.length>0 ? (<Carousel/>): (<Choose/>)}    
+      {session && session.user.acctype=="Manager"? (<Manager/>): session?.user.accounts.length>0 ? (<Carousel/>): (<Choose/>)}    
       </>
     );
   }
   if (loading) {
     return (
-       <div className="main-content h-[100vh] flex flex-col justify-center ">
-        <div className="border-gray-300 h-20 w-20 animate-spin rounded-full border-8 border-t-blue-600"></div>
-        <div className="pt-2 text-xl">Page is Loading </div>
-    </div>
+       <Loading/>
     );
   }
   

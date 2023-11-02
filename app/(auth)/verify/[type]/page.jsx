@@ -56,7 +56,7 @@ const handleAdd= async(e) => {
  
   try {
     await dispatch(updateUser(array)).unwrap();
-   router.replace("/");
+   router.replace("/set-epin");
   } catch (error) {
     console.error("Error updating user:", error);
   }

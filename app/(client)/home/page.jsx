@@ -41,13 +41,13 @@ const Carousel = () => {
       id: 5,
       title: 'Internet Banking',
       imageSrc: '/Images/service5.svg',
-      to:''
+      to:'/comingsoon'
     },
     {
       id: 6,
       title: 'Offer',
       imageSrc: '/Images/service6.svg',
-      to:''
+      to:'/comingsoon'
     },
   ];
 

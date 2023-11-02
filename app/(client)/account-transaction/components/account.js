@@ -4,17 +4,18 @@ import { accHistory, accountDetails } from "@/store/feature/transaction/tranSlic
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useSession } from "next-auth/react";
+import Loading from "@/app/components/Loading";
 function Account(){
     const {data:session ,status} = useSession();
     const dispatch=useDispatch();
     // const history = useSelector((state)=>state.historyData.history);
     const {accdetailsData} = useSelector((state)=> state.historyData);
-    useEffect(() => { 
-        dispatch(accountDetails(session?.user.accounts[0].accountNumber));
-      }, [status=='authenticated']);
-  
+    
+  if(status=='authenticated'){
+    dispatch(accountDetails(session?.user.accounts[0].accountNumber));
+  }
 if(status=='loading'){
-    return <p>loading</p>
+    return <Loading/>
 
 }
     return(
@@ -28,7 +29,7 @@ if(status=='loading'){
             <div class="p-6 ">
                 <div class="flex-col text-2xl font-semibold p-2">
                     <div className="text-black"> Acc Balance : </div>
-                    <div className="text-5xl text-black "> 12500</div>
+                    <div className="text-5xl text-black "> {accdetailsData.balance}</div>
                 </div>
                 <div className="text-xl text-black p-2">
                     <div className="flex py-2 text-black text-2xl font-semibold">Acc No :</div>
