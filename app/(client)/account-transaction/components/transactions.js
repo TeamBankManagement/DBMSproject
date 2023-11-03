@@ -1,8 +1,11 @@
+'use client'
+
+import { useSession } from "next-auth/react";
+
 function Transactions({_id,from,to,type,amount,timestamp}){
-    // const timestamp = timestamps;
-    console.log("this is timestap",timestamp);
+    const {data:session} =useSession();
     const date = new Date(timestamp);
-console.log(date);
+
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     ];
@@ -23,7 +26,7 @@ console.log(date);
                     <div>Order id - {_id}</div>
                     <div class="pl-2">{formattedDate}</div>
                 </div>
-                <div class="font-bold pt-2 pl-20"> {amount}₹ </div>
+                <div class={`font-bold pt-2 pl-20 ${session?.user.accounts[0].accountNumber==form ?'text-red-400':'text-green-400'} `}> {amount}₹ </div>
             </div>
     )
 }

@@ -119,7 +119,7 @@ return (
                   Welcome Back
                 </h2>
                 <p className="text-slate-400 dark:text-navy-300">
-                  Please Set 4 digit pin Number to continue
+                  Please Set pin Number to continue
                 </p>
               </div>
             </div>

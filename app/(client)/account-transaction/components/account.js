@@ -39,10 +39,10 @@ if(status=='loading'){
                     <div className="flex text-black py-2 text-2xl font-semibold">IFSC Code :</div>
                     <div className="pb-4 text-black font-medium">{accdetailsData.ifsc}</div>
                 </div>
-                <div className="p-2">
+                {/* <div className="p-2">
                     <div className="text-2xl text-black font-medium pb-2">Account Holder Name :</div>
                     <div className="font-semibold text-black text-xl">Jaydev Kundu</div>
-                </div>
+                </div> */}
             </div>
         </div>
     )

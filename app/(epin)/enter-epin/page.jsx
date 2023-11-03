@@ -17,7 +17,7 @@ const Epin = ({formData,handleInputChange}) => {
             <div className="text-center">
               <Image
                 className="mx-auto h-16 w-16"
-                src="/images/100x100.png"
+                src="/Images/iitg_logo_1.png"
                 alt="logo"
                 width={16}
                 height={16}
