@@ -86,8 +86,8 @@ const {formData,setFormData,handleInputChange}= useContext(AppContext);
                 className="mx-auto h-16 w-16"
                 src="/Images/iitg_logo_1.png"
                 alt="logo"
-                width={16}
-                height={16}
+                width={100}
+                height={100}
               />
               <div className="mt-4">
                 <h2 className="text-2xl font-semibold text-slate-600 dark:text-navy-100">

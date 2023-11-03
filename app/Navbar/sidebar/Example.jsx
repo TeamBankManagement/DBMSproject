@@ -156,7 +156,7 @@ const Example = () => {
                         className="group flex justify-between space-x-2 rounded-lg p-2 tracking-wide text-slate-800 outline-none transition-all hover:bg-slate-100 focus:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                         href="/transaction"
                       >
-                        <span>Credit Balance</span>
+                        <span>Debit Balance</span>
                       </Link>
                     </>
                   ) : (
