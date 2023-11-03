@@ -26,7 +26,7 @@ function Transactions({_id,from,to,type,amount,timestamp}){
                     <div>Order id - {_id}</div>
                     <div class="pl-2">{formattedDate}</div>
                 </div>
-                <div class={`font-bold pt-2 pl-20 ${session?.user.accounts[0].accountNumber==form ?'text-red-400':'text-green-400'} `}> {amount}₹ </div>
+                <div class="font-bold pt-2 pl-20 text-red-400"> {amount}₹ </div>
             </div>
     )
 }
